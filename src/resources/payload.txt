@@ -1,2 +1,0 @@
-firstname1 lastname1 email1
-firstname2 lastname2 email2
