@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dc7f4172-45da-4bcc-ae50-94c05e1ba5bf" name="Changes" comment="check in simple sample (not including Stack and ArrayList in the program)" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;winese&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/XavierChew/CET2012_P02.git&quot;,
+    &quot;accountId&quot;: &quot;4ac7f51e-47e5-4543-9107-e9814fc1b321&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="30fwVyfiGl2BaJOm2U8I3fwGMPl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/jianh/OneDrive/Desktop/TFIP/Course 2 - Programming Paradigms Advanced Java/Practicum/Practicum 2/Practicum 2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc7f4172-45da-4bcc-ae50-94c05e1ba5bf" name="Changes" comment="" />
+      <created>1754031962852</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1754031962852</updated>
+      <workItem from="1754031964090" duration="1458000" />
+      <workItem from="1754038048908" duration="12751000" />
+    </task>
+    <task id="LOCAL-00001" summary="Test add commit">
+      <option name="closed" value="true" />
+      <created>1754032016757</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1754032016758</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add Invoker class">
+      <option name="closed" value="true" />
+      <created>1754032131944</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754032131944</updated>
+    </task>
+    <task id="LOCAL-00003" summary="test">
+      <option name="closed" value="true" />
+      <created>1754032448586</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1754032448586</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Delete unused folder">
+      <option name="closed" value="true" />
+      <created>1754033142897</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1754033142897</updated>
+    </task>
+    <task id="LOCAL-00005" summary="check in simple sample (not including Stack and ArrayList in the program)">
+      <option name="closed" value="true" />
+      <created>1754071424778</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1754071424778</updated>
+    </task>
+    <task id="LOCAL-00006" summary="check in simple sample (not including Stack and ArrayList in the program)">
+      <option name="closed" value="true" />
+      <created>1754071571334</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1754071571334</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Test add commit" />
+    <MESSAGE value="Add Invoker class" />
+    <MESSAGE value="Add test variable" />
+    <MESSAGE value="test" />
+    <MESSAGE value="Delete unused folder" />
+    <MESSAGE value="check in simple sample (not including Stack and ArrayList in the program)" />
+    <option name="LAST_COMMIT_MESSAGE" value="check in simple sample (not including Stack and ArrayList in the program)" />
+  </component>
+</project>
