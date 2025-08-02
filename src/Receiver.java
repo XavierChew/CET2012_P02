@@ -1,16 +1,19 @@
 import java.util.Objects;
 
+/**
+ * Receiver class:
+ */
 public class Receiver {
     public void add(String strInput) {
         if (!Objects.equals(strInput, "q")) {
             System.out.println("Add " + strInput);
         }
     }
-//    public void update(String strInput) {
-//        if (!Objects.equals(strInput, "q")) {
-//            System.out.println("Update  " + strInput);
-//        }
-//    }
+    public void update(String strInput) {
+        if (!Objects.equals(strInput, "q")) {
+            System.out.println("Update  " + strInput);
+        }
+    }
 //    public void delete(String strInput) {
 //        if (!Objects.equals(strInput, "q")) {
 //            System.out.println("Delete  " + strInput);

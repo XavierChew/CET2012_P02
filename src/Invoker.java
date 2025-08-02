@@ -1,22 +1,28 @@
-import java.util.ArrayList;
 import java.util.Stack;
 
+/**
+ * Invoker class:
+ */
 public class Invoker {
-    private Command command;
+    /**
+     * Variable for command array
+     */
+    private Command[] cmdToExecute;
 
-    public void setCommandsForExecution(Command cmdToExecute) {
-        this.command = cmdToExecute;
+    /**
+     * Set commands for execution
+     * @param cmdToExecute command array
+     */
+    public void setCommandsForExecution(Command[] cmdToExecute) {
+        this.cmdToExecute = cmdToExecute;
     }
 
-    public void executeCommand() {
-        this.command.execute();
+    /**
+     * Execute command
+     * @param history Stack of command
+     */
+    public void executeCommand(Stack<Command> history) {
+        Command command = history.lastElement();
+        command.execute();
     }
-
-    //we need to use this:
-    //private Command[] commands;
-    //public void setCommandsForExecution(Command[] cmdToExecute) {
-    //}
-
-    //public void executeCommand(Stack<Command> history) {
-    //}
 }

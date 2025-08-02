@@ -7,14 +7,28 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 public class AddCommand implements Command {
+    /**
+     * Variable for receiver
+     */
     private Receiver receiver;
+    /**
+     * Variable for input
+     */
     private String strInput;
 
+    /**
+     * Constructor of Update Command
+     * @param receiver the receiver
+     * @param strInput the input
+     */
     public AddCommand(Receiver receiver, String strInput) {
         this.receiver = receiver;
         this.strInput = strInput;
     }
 
+    /**
+     * Execute method
+     */
     @Override
     public void execute() {
         Path filepath = Paths.get("./src/resources/payload.txt");
