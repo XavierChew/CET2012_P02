@@ -22,7 +22,9 @@ public class Invoker {
      * @param history Stack of command
      */
     public void executeCommand(Stack<Command> history) {
-        Command command = history.lastElement();
-        command.execute();
+        for (Command cmd : this.cmdToExecute) {
+            cmd.execute();
+            history.push(cmd);
+        }
     }
 }

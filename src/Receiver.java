@@ -10,20 +10,33 @@ public class Receiver {
 
     private List<String> dataStorage = new ArrayList<>();
 
-
     public void add(String strInput) {
-        if (!Objects.equals(strInput, "q")) {
-            System.out.println("Add " + strInput);
+        dataStorage.add(strInput);
+        System.out.println("Add " + strInput);
+    }
+
+    public void update(int intUpdateIndex, String UpdateInput) {
+        String original = dataStorage.get(intUpdateIndex);
+
+        // Split and modify
+        String[] arrOrigin = original.split("\\s+", 3); // split into [First, Last, Email]
+        String[] arrUpdate= UpdateInput.split("\\s+", 3); // split into [First, Last, Email]
+        String updatedInput = "";
+
+        if (dataStorage.contains(intUpdateIndex)) {
+            for(int i = 0; i < arrOrigin.length; i++){
+                if (arrUpdate[i] != null) {
+                    arrOrigin[i] = arrUpdate[i];
+                }
+            }
+            updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2];
+        }
+        else {
+            System.out.println("Data not found");
         }
     }
 
-    public void update(String strInput) {
-        if (!Objects.equals(strInput, "q")) {
-            System.out.println("Update  " + strInput);
-        }
-    }
-
-        public void delete(String index) {
+    public void delete(String index) {
         if (dataStorage.contains(index)) {
             dataStorage.remove(index);
         }

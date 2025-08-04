@@ -10,52 +10,101 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);  // Create a Scanner object
-        String strInput; //store input
+        String strAddInput1 = "FirstName1 LastName1 email1"; //for add
+        String strAddInput2 = "FirstName2 LastName2 email2"; //for add
+        String strUpdateInput1 = "1 FirstNameChange1 LastName1 email1"; //for update
+        String strDeleteInput1 = "2";
+        String strList = "List";//for update
         Stack<Command> history = new Stack<>(); //store command history
+        int countSpace = 0; //count the space
         int counter = 0; //counter for array
 
-        System.out.println("To quit, enter \"q\".");
 
-        do {
-            System.out.println("Enter Command: ");
-            strInput = input.nextLine();
+//        //count the space to determine which command to use
+//        for (int i = 0; i < strInput.length(); i++) {
+//            if (strInput.charAt(i) == ' ') {
+//                countSpace++;
+//            }
+//        }
 
-            if (!Objects.equals(strInput.toLowerCase(), "q")) {
-                counter++;
+        // Create receiver
+        Receiver receiver = new Receiver();
 
-                // Create receiver
-                Receiver receiver = new Receiver();
+        Command addCommand1 = new AddCommand(receiver, strAddInput1);
+        Command addCommand2 = new AddCommand(receiver, strAddInput2);
+        Command updateCommand = new UpdateCommand(receiver, strUpdateInput1);
+        Command deleteCommand = new DeleteCommand(receiver, strDeleteInput1);
+        Command listCommand = new ListCommand(receiver);
 
-                //lazy solution, should use regex
-                int countSpace = 0;
-                for (int i = 0; i < strInput.length(); i++) {
-                    if (strInput.charAt(i) == ' ') {
-                        countSpace++;
-                    }
-                }
+//        if (countSpace == 2) {
+//            Command addCommand = new AddCommand(receiver, strInput1);
+//            counter++;
+//
+//            //history.add(addCommand);
+//        }
+//        //update is not working yet
+//        else if (countSpace == 3) {
+//            Command updateCommand = new UpdateCommand(receiver, strInput2);
+//            counter++;
+//            //history.add(updateCommand);
+//        }
 
-                if (countSpace == 2) {
-                    Command addCommand = new AddCommand(receiver, strInput);
-                    history.add(addCommand);
-                }
-                //update is not working yet
-                else if (countSpace == 3) {
-                    Command updateCommand = new UpdateCommand(receiver, strInput);
-                    history.add(updateCommand);
-                }
+        // Create command objects
+        Command[] command = {addCommand1, addCommand2, updateCommand, deleteCommand, listCommand};
 
-                // Create command objects
-                Command[] command = new Command[counter];
-                command = history.toArray(command);
+        // Create invoker
+        Invoker invoker = new Invoker();
 
-                // Create invoker
-                Invoker invoker = new Invoker();
+        // Set and execute commands
+        invoker.setCommandsForExecution(command);
+        invoker.executeCommand(history);
 
-                // Set and execute commands
-                invoker.setCommandsForExecution(command);
-                invoker.executeCommand(history);
-            }
-        } while (!strInput.equalsIgnoreCase("q"));
+//        Scanner input = new Scanner(System.in);  // Create a Scanner object
+//        String strInput; //store input
+//        Stack<Command> history = new Stack<>(); //store command history
+//        int counter = 0; //counter for array
+//
+//        System.out.println("To quit, enter \"q\".");
+//
+//        do {
+//            System.out.println("Enter Command: ");
+//            strInput = input.nextLine();
+//
+//            if (!Objects.equals(strInput.toLowerCase(), "q")) {
+//                counter++;
+//
+//                // Create receiver
+//                Receiver receiver = new Receiver();
+//
+//                //lazy solution, should use regex
+//                int countSpace = 0;
+//                for (int i = 0; i < strInput.length(); i++) {
+//                    if (strInput.charAt(i) == ' ') {
+//                        countSpace++;
+//                    }
+//                }
+//
+//                if (countSpace == 2) {
+//                    Command addCommand = new AddCommand(receiver, strInput);
+//                    history.add(addCommand);
+//                }
+//                //update is not working yet
+//                else if (countSpace == 3) {
+//                    Command updateCommand = new UpdateCommand(receiver, strInput);
+//                    history.add(updateCommand);
+//                }
+//
+//                // Create command objects
+//                Command[] command = new Command[counter];
+//                command = history.toArray(command);
+//
+//                // Create invoker
+//                Invoker invoker = new Invoker();
+//
+//                // Set and execute commands
+//                invoker.setCommandsForExecution(command);
+//                invoker.executeCommand(history);
+//            }
+//        } while (!strInput.equalsIgnoreCase("q"));
     }
 }

@@ -31,32 +31,38 @@ public class UpdateCommand implements Command {
      */
     @Override
     public void execute() {
-        String intLine = this.strInput.split(" ")[0];
-        String strUpdateInput = this.strInput.replaceFirst(intLine,"");
-        int count = 0;
-        String strLine = "";
-        Path filepath = Paths.get("./src/resources/payload.txt");
+        int intUpdateIndex = Integer.parseInt(this.strInput.split(" ")[0]); //index
+//        String[] arrUpdateInput = new String[3];
+//
+//        arrUpdateInput[0] = this.strInput.split(" ")[1]; //firstname "{fistname, , }"
+//        arrUpdateInput[1] = this.strInput.split(" ")[2]; //last name space
+//        arrUpdateInput[2] = this.strInput.split(" ")[3]; //email space
 
-        if (Files.notExists(filepath)) {
-            System.out.println("File does not exist");
-            return;
-        }
-
-        try (InputStream in = Files.newInputStream(filepath);
-             BufferedReader reader = new BufferedReader(
-                     new InputStreamReader(in))) {
-
-            while ((strLine = reader.readLine()) != null) {
-                count ++;
-                if (count == Integer.parseInt(intLine)) {
-                    BufferedWriter writer = Files.newBufferedWriter(filepath);
-                    writer.write(strUpdateInput);
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+        receiver.update(intUpdateIndex, this.strInput);
+//        int count = 0;
+//        String strLine = "";
+//        Path filepath = Paths.get("./src/resources/payload.txt");
+//
+//        if (Files.notExists(filepath)) {
+//            System.out.println("File does not exist");
+//            return;
+//        }
+//
+//        try (InputStream in = Files.newInputStream(filepath);
+//             BufferedReader reader = new BufferedReader(
+//                     new InputStreamReader(in))) {
+//
+//            while ((strLine = reader.readLine()) != null) {
+//                count ++;
+//                if (count == Integer.parseInt(intLine)) {
+//                    BufferedWriter writer = Files.newBufferedWriter(filepath);
+//                    writer.write(strUpdateInput);
+//                    break;
+//                }
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Error: " + e.getMessage());
+//        }
 
 //        try (SeekableByteChannel sbc = Files.newByteChannel(filepath,
 //                StandardOpenOption.WRITE)) {
@@ -81,7 +87,7 @@ public class UpdateCommand implements Command {
 //            System.out.println("Error: " + e.getMessage());
 //        }
 
-        this.receiver.update(this.strInput);
+        //this.receiver.update(this.strInput);
     }
 
 }
