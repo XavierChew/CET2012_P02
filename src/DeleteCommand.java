@@ -10,7 +10,8 @@ public class DeleteCommand implements Command {
 
     @Override
     public void execute(){
-        receiver.delete(index);
+
+        receiver.delete(Integer.parseInt(this.index));
     }
 
 }

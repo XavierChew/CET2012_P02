@@ -12,20 +12,10 @@ public class Main {
     public static void main(String[] args) {
         String strAddInput1 = "FirstName1 LastName1 email1"; //for add
         String strAddInput2 = "FirstName2 LastName2 email2"; //for add
-        String strUpdateInput1 = "1 FirstNameChange1 LastName1 email1"; //for update
+        String strUpdateInput1 = "1 FirstNameChange1 Fakename"; //for update
         String strDeleteInput1 = "2";
         String strList = "List";//for update
         Stack<Command> history = new Stack<>(); //store command history
-        int countSpace = 0; //count the space
-        int counter = 0; //counter for array
-
-
-//        //count the space to determine which command to use
-//        for (int i = 0; i < strInput.length(); i++) {
-//            if (strInput.charAt(i) == ' ') {
-//                countSpace++;
-//            }
-//        }
 
         // Create receiver
         Receiver receiver = new Receiver();
@@ -36,21 +26,9 @@ public class Main {
         Command deleteCommand = new DeleteCommand(receiver, strDeleteInput1);
         Command listCommand = new ListCommand(receiver);
 
-//        if (countSpace == 2) {
-//            Command addCommand = new AddCommand(receiver, strInput1);
-//            counter++;
-//
-//            //history.add(addCommand);
-//        }
-//        //update is not working yet
-//        else if (countSpace == 3) {
-//            Command updateCommand = new UpdateCommand(receiver, strInput2);
-//            counter++;
-//            //history.add(updateCommand);
-//        }
 
         // Create command objects
-        Command[] command = {addCommand1, addCommand2, updateCommand, deleteCommand, listCommand};
+        Command[] command = {addCommand1, addCommand2, updateCommand,deleteCommand, listCommand};
 
         // Create invoker
         Invoker invoker = new Invoker();

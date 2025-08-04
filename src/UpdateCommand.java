@@ -32,13 +32,12 @@ public class UpdateCommand implements Command {
     @Override
     public void execute() {
         int intUpdateIndex = Integer.parseInt(this.strInput.split(" ")[0]); //index
-//        String[] arrUpdateInput = new String[3];
-//
-//        arrUpdateInput[0] = this.strInput.split(" ")[1]; //firstname "{fistname, , }"
-//        arrUpdateInput[1] = this.strInput.split(" ")[2]; //last name space
-//        arrUpdateInput[2] = this.strInput.split(" ")[3]; //email space
-
-        receiver.update(intUpdateIndex, this.strInput);
+        int firstSpaceIndex = this.strInput.indexOf(" ");
+        String afterFirstSpace = "";
+        if (firstSpaceIndex != -1) {
+            afterFirstSpace = strInput.substring(firstSpaceIndex + 1);
+        }
+        receiver.update(intUpdateIndex, afterFirstSpace);
 //        int count = 0;
 //        String strLine = "";
 //        Path filepath = Paths.get("./src/resources/payload.txt");
