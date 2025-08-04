@@ -1,17 +1,33 @@
+/**
+ * Delete Command class
+ */
 public class DeleteCommand implements Command {
-
+    /**
+     * Variable for receiver
+     */
     private Receiver receiver;
-    private String index;
+    /**
+     * Variable for delete command
+     */
+    private String strDeleteCommand;
 
-    public DeleteCommand(Receiver receiver, String index) {
+    /**
+     * Constructor of Delete Command
+     * @param receiver the receiver
+     * @param strDeleteCommand the delete command
+     */
+    public DeleteCommand(Receiver receiver, String strDeleteCommand) {
         this.receiver = receiver;
-        this.index = index;
+        this.strDeleteCommand = strDeleteCommand;
     }
 
+    /**
+     * Execute method
+     */
     @Override
     public void execute(){
-
-        receiver.delete(Integer.parseInt(this.index));
+        //pass in index which match with data storage index
+        receiver.delete(Integer.parseInt(this.strDeleteCommand.split(" ")[0]) - 1);
     }
 
 }

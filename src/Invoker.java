@@ -19,7 +19,7 @@ public class Invoker {
 
     /**
      * Execute command
-     * @param history Stack of command
+     * @param history command stack
      */
     public void executeCommand(Stack<Command> history) {
         for (Command cmd : this.cmdToExecute) {

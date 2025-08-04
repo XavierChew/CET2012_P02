@@ -1,29 +1,24 @@
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.SeekableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-
+/**
+ * Add Command class
+ */
 public class AddCommand implements Command {
     /**
      * Variable for receiver
      */
     private Receiver receiver;
     /**
-     * Variable for input
+     * Variable for add command
      */
-    private String strInput;
+    private String strAddCommand;
 
     /**
      * Constructor of Update Command
      * @param receiver the receiver
-     * @param strInput the input
+     * @param strAddCommand the add command
      */
-    public AddCommand(Receiver receiver, String strInput) {
+    public AddCommand(Receiver receiver, String strAddCommand) {
         this.receiver = receiver;
-        this.strInput = strInput;
+        this.strAddCommand = strAddCommand;
     }
 
     /**
@@ -31,23 +26,7 @@ public class AddCommand implements Command {
      */
     @Override
     public void execute() {
-//        Path filepath = Paths.get("./src/resources/payload.txt");
-//
-//        if (Files.notExists(filepath)) {
-//            System.out.println("File does not exist");
-//            return;
-//        }
-//        this.strInput = this.strInput + "\n";
-//        try (SeekableByteChannel sbc = Files.newByteChannel(filepath,
-//                StandardOpenOption.APPEND)) {
-//            byte[] data = this.strInput.getBytes();
-//            ByteBuffer bb = ByteBuffer.wrap(data);
-//            sbc.write(bb);
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-
-        this.receiver.add(this.strInput);
+        this.receiver.add(this.strAddCommand);
     }
 
 }

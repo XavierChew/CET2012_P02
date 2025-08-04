@@ -1,87 +1,42 @@
-import java.util.Objects;
-import java.util.Scanner;
 import java.util.Stack;
 
 /**
- * Driver class:
- * Allow user to key in data and based on format,
- * perform the command accordingly
+ * Create and configure the command objects
 */
 public class Main {
 
     public static void main(String[] args) {
-        String strAddInput1 = "FirstName1 LastName1 email1"; //for add
-        String strAddInput2 = "FirstName2 LastName2 email2"; //for add
-        String strUpdateInput1 = "1 FirstNameChange1 Fakename"; //for update
-        String strDeleteInput1 = "2";
-        Stack<Command> history = new Stack<>(); //store command history
+        String strAddCommand = "FirstName1 LastName1 email1"; //for add
+        String strUpdateCommand = "1 FirstNameChange1"; //for update
+        String strDeleteCommand = "1"; //for delete
+        //String strUndoCommand = "Undo"; //for undo
+        String strListCommand = "List"; //for list
+        Stack<Command> history = new Stack<>(); //history stack
 
         // Create receiver
         Receiver receiver = new Receiver();
 
-        Command addCommand1 = new AddCommand(receiver, strAddInput1);
-        Command addCommand2 = new AddCommand(receiver, strAddInput2);
-        Command updateCommand = new UpdateCommand(receiver, strUpdateInput1);
-        Command deleteCommand = new DeleteCommand(receiver, strDeleteInput1);
-        Command listCommand = new ListCommand(receiver);
-
-
+        //might need to review this to make it more automatic start
         // Create command objects
-        Command[] command = {addCommand1, addCommand2, updateCommand,deleteCommand, listCommand};
+        Command addCommand = new AddCommand(receiver, strAddCommand);
+        Command updateCommand = new UpdateCommand(receiver, strUpdateCommand);
+        Command deleteCommand = new DeleteCommand(receiver, strDeleteCommand);
+        //Command undoCommand = new UndoCommand(receiver, strUndoCommand);
+        Command listCommand = new ListCommand(receiver, strListCommand);
+
+        // Store to command objects array
+        Command[] cmdToExecute = {addCommand, updateCommand, deleteCommand, listCommand};
+        //Command[] cmdToExecute = {addCommand, updateCommand,deleteCommand, listCommand, undoCommand, listCommand};
+        //might need to review this to make it more automatic end
 
         // Create invoker
         Invoker invoker = new Invoker();
 
         // Set and execute commands
-        invoker.setCommandsForExecution(command);
+        invoker.setCommandsForExecution(cmdToExecute);
         invoker.executeCommand(history);
 
-//        Scanner input = new Scanner(System.in);  // Create a Scanner object
-//        String strInput; //store input
-//        Stack<Command> history = new Stack<>(); //store command history
-//        int counter = 0; //counter for array
-//
-//        System.out.println("To quit, enter \"q\".");
-//
-//        do {
-//            System.out.println("Enter Command: ");
-//            strInput = input.nextLine();
-//
-//            if (!Objects.equals(strInput.toLowerCase(), "q")) {
-//                counter++;
-//
-//                // Create receiver
-//                Receiver receiver = new Receiver();
-//
-//                //lazy solution, should use regex
-//                int countSpace = 0;
-//                for (int i = 0; i < strInput.length(); i++) {
-//                    if (strInput.charAt(i) == ' ') {
-//                        countSpace++;
-//                    }
-//                }
-//
-//                if (countSpace == 2) {
-//                    Command addCommand = new AddCommand(receiver, strInput);
-//                    history.add(addCommand);
-//                }
-//                //update is not working yet
-//                else if (countSpace == 3) {
-//                    Command updateCommand = new UpdateCommand(receiver, strInput);
-//                    history.add(updateCommand);
-//                }
-//
-//                // Create command objects
-//                Command[] command = new Command[counter];
-//                command = history.toArray(command);
-//
-//                // Create invoker
-//                Invoker invoker = new Invoker();
-//
-//                // Set and execute commands
-//                invoker.setCommandsForExecution(command);
-//                invoker.executeCommand(history);
-//            }
-//        } while (!strInput.equalsIgnoreCase("q"));
+        // Store to file
+        receiver.storeToFile();
     }
 }

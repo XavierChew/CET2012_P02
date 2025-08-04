@@ -1,8 +1,3 @@
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 /**
  * Update Command class
  */
@@ -12,18 +7,18 @@ public class UpdateCommand implements Command {
      */
     private Receiver receiver;
     /**
-     * Variable for input
+     * Variable for update command
      */
-    private String strInput;
+    private String strUpdateCommand;
 
     /**
      * Constructor of Update Command
      * @param receiver the receiver
-     * @param strInput the input
+     * @param strUpdateCommand the update command
      */
-    public UpdateCommand(Receiver receiver, String strInput) {
+    public UpdateCommand(Receiver receiver, String strUpdateCommand) {
         this.receiver = receiver;
-        this.strInput = strInput;
+        this.strUpdateCommand = strUpdateCommand;
     }
 
     /**
@@ -31,62 +26,19 @@ public class UpdateCommand implements Command {
      */
     @Override
     public void execute() {
-        int intUpdateIndex = Integer.parseInt(this.strInput.split(" ")[0]); //index
-        int firstSpaceIndex = this.strInput.indexOf(" ");
-        String afterFirstSpace = "";
+        //get index, make it match with data storage index
+        int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
+
+        //get index after the 1st space
+        int firstSpaceIndex = this.strUpdateCommand.indexOf(" ");
+
+        //to store data to be updated
+        String strUpdateData = "";
         if (firstSpaceIndex != -1) {
-            afterFirstSpace = strInput.substring(firstSpaceIndex + 1);
+            strUpdateData = strUpdateCommand.substring(firstSpaceIndex + 1);
         }
-        receiver.update(intUpdateIndex, afterFirstSpace);
-//        int count = 0;
-//        String strLine = "";
-//        Path filepath = Paths.get("./src/resources/payload.txt");
-//
-//        if (Files.notExists(filepath)) {
-//            System.out.println("File does not exist");
-//            return;
-//        }
-//
-//        try (InputStream in = Files.newInputStream(filepath);
-//             BufferedReader reader = new BufferedReader(
-//                     new InputStreamReader(in))) {
-//
-//            while ((strLine = reader.readLine()) != null) {
-//                count ++;
-//                if (count == Integer.parseInt(intLine)) {
-//                    BufferedWriter writer = Files.newBufferedWriter(filepath);
-//                    writer.write(strUpdateInput);
-//                    break;
-//                }
-//            }
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
 
-//        try (SeekableByteChannel sbc = Files.newByteChannel(filepath,
-//                StandardOpenOption.WRITE)) {
-//            byte[] data = strUpdateInput.getBytes();
-//            ByteBuffer bb = ByteBuffer.wrap(data);
-//            sbc.write(bb);
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-
-//        try (BufferedReader buff_read = Files.newBufferedReader(filepath)) {
-//            // read the file contents from the buffer line by line
-//            while ( (strLine = buff_read.readLine()) != null) {
-//                count ++;
-//                if (count == Integer.parseInt(intLine)) {
-//                    BufferedWriter buff_writer = Files.newBufferedWriter(filepath);
-//                    buff_writer.write(strUpdateInput);
-//                    break;
-//                }
-//            }
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-
-        //this.receiver.update(this.strInput);
+        receiver.update(intUpdateIndex, strUpdateData);
     }
 
 }
