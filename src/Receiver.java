@@ -23,17 +23,21 @@ public class Receiver {
         String[] arrUpdate= UpdateInput.split("\\s+", 3); // split into [First, Last, Email]
         String updatedInput = "";
 
-        if (dataStorage.contains(intUpdateIndex)) {
-            for(int i = 0; i < arrOrigin.length; i++){
-                if (arrUpdate[i] != null) {
-                    arrOrigin[i] = arrUpdate[i];
-                }
+        for(int i = 0; i < arrOrigin.length; i++){
+            if (arrUpdate[i] != null) {
+                arrOrigin[i] = arrUpdate[i];
             }
-            updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2];
         }
-        else {
-            System.out.println("Data not found");
-        }
+        updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2];
+
+        dataStorage.set(intUpdateIndex, updatedInput);  // update in ArrayList
+
+//        if (dataStorage.contains(intUpdateIndex)) {
+//
+//        }
+//        else {
+//            System.out.println("Data not found");
+//        }
     }
 
     public void delete(String index) {
