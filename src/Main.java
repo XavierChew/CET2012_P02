@@ -14,7 +14,6 @@ public class Main {
         String strAddInput2 = "FirstName2 LastName2 email2"; //for add
         String strUpdateInput1 = "1 FirstNameChange1 Fakename"; //for update
         String strDeleteInput1 = "2";
-        String strList = "List";//for update
         Stack<Command> history = new Stack<>(); //store command history
 
         // Create receiver
