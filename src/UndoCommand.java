@@ -24,5 +24,10 @@ public class UndoCommand implements Command {
     public void  undo() {
 
     }
+    @Override
+    public boolean toBeSavedInHistory() {
+        return false;
+
+    }
 }
 

@@ -32,5 +32,10 @@ public class ListCommand implements Command {
     public void undo(){
 
     }
+    @Override
+    public boolean toBeSavedInHistory() {
+        return false;
+
+    }
 
 }

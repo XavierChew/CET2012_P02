@@ -20,6 +20,8 @@ public class DeleteCommand implements Command {
     public DeleteCommand(Receiver receiver, String strDeleteCommand) {
         this.receiver = receiver;
         this.strDeleteCommand = strDeleteCommand;
+
+
     }
 
     /**
@@ -35,6 +37,12 @@ public class DeleteCommand implements Command {
     @Override
     public void undo(){
         Receiver.dataStorage.add(strForUndoDelete);
+    }
+
+    @Override
+    public boolean toBeSavedInHistory() {
+        return true;
+
     }
 
 }

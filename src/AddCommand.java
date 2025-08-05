@@ -68,4 +68,10 @@ public class AddCommand implements Command {
         Receiver.dataStorage.removeLast();
 
     }
+
+    @Override
+    public boolean toBeSavedInHistory() {
+        return true;
+
+    }
 }

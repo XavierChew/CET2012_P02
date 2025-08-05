@@ -39,10 +39,22 @@ public class UpdateCommand implements Command {
         if (firstSpaceIndex != -1) {
             strUpdateData = strUpdateCommand.substring(firstSpaceIndex + 1);
         }
+        // Storing the original data for Undo.
+        strForUndoUpdate = receiver.get(intUpdateIndex);
 
         receiver.update(intUpdateIndex, strUpdateData);
     }
     @Override
-    public void undo(){}
+    public void undo(){
+        int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
+        receiver.update(intUpdateIndex, strForUndoUpdate);
+
+    }
+
+    @Override
+    public boolean toBeSavedInHistory() {
+        return true;
+
+    }
 
 }

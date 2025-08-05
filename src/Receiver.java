@@ -56,6 +56,14 @@ public class Receiver {
         //System.out.println("Update " + strUpdateData); //for testing
     }
 
+    public String get(int index){
+        return dataStorage.get(index);
+
+    }
+
+
+
+
     /**
      * Delete function for Delete Command
      *

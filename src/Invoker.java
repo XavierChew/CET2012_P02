@@ -27,7 +27,7 @@ public class Invoker {
     public void executeCommand(Stack<Command> history) {
         for (Command cmd : this.cmdToExecute) {
             cmd.execute();
-            if (!(cmd instanceof UndoCommand)) {
+            if (cmd.toBeSavedInHistory()) {
                 history.push(cmd);
             }
         }

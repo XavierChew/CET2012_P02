@@ -10,6 +10,7 @@ public class Main {
         String strAddCommand2 = "2ndName 2ndlast email2";
         String strAddCommand3 = "3rdName 3rdlast email3";
         String strUpdateCommand = "1 FirstNameChange1";
+        String strUpdateCommand2 = "2 FirstNameChange2 lastname2";
         String strDeleteCommand = "1"; //for delete
         String strUndoCommand = "Undo"; //for undo
         String strListCommand = "List"; //for list
@@ -25,13 +26,14 @@ public class Main {
         Command addCommand1 = new AddCommand(receiver, strAddCommand2);
         Command addCommand2 = new AddCommand(receiver, strAddCommand3);
         Command updateCommand = new UpdateCommand(receiver, strUpdateCommand);
+        Command updateCommand2 = new UpdateCommand(receiver, strUpdateCommand2);
         Command deleteCommand = new DeleteCommand(receiver, strDeleteCommand);
         Command undoCommand = new UndoCommand(receiver, strUndoCommand,history);
         Command listCommand = new ListCommand(receiver, strListCommand);
 
         // Store to command objects array
 //        Command[] cmdToExecute = {addCommand, updateCommand, listCommand};
-        Command[] cmdToExecute = {addCommand, addCommand1,undoCommand, undoCommand, addCommand2, listCommand};
+        Command[] cmdToExecute = {addCommand, addCommand1,addCommand2,updateCommand,updateCommand2,  undoCommand, undoCommand, listCommand};
         //might need to review this to make it more automatic end
 
         // Create invoker
