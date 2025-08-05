@@ -1,4 +1,3 @@
-import java.util.Objects;
 import java.util.Stack;
 
 /**
@@ -11,9 +10,9 @@ public class Invoker {
     private Command[] cmdToExecute;
 
 
-
     /**
      * Set commands for execution
+     *
      * @param cmdToExecute command array
      */
     public void setCommandsForExecution(Command[] cmdToExecute) {
@@ -22,11 +21,15 @@ public class Invoker {
 
     /**
      * Execute command
+     *
      * @param history command stack
      */
     public void executeCommand(Stack<Command> history) {
         for (Command cmd : this.cmdToExecute) {
             cmd.execute();
-            history.push(cmd);}
+            if (!(cmd instanceof UndoCommand)) {
+                history.push(cmd);
+            }
         }
     }
+}

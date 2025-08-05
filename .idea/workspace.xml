@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc7f4172-45da-4bcc-ae50-94c05e1ba5bf" name="Changes" comment="Added Store data to file function, added simple javadoc, use proper and consistent naming conventions">
+    <list default="true" id="dc7f4172-45da-4bcc-ae50-94c05e1ba5bf" name="Changes" comment="Updated undoCommand">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeleteCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Invoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Invoker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ListCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Receiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UndoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UndoCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UpdateCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +44,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -149,7 +140,23 @@
       <option name="project" value="LOCAL" />
       <updated>1754296829502</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated undoCommand">
+      <option name="closed" value="true" />
+      <created>1754383888043</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1754383888043</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updated undoCommand">
+      <option name="closed" value="true" />
+      <created>1754383997301</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1754383997301</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,19 +170,16 @@
     <MESSAGE value="Delete unused folder" />
     <MESSAGE value="check in simple sample (not including Stack and ArrayList in the program)" />
     <MESSAGE value="Added Store data to file function, added simple javadoc, use proper and consistent naming conventions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Store data to file function, added simple javadoc, use proper and consistent naming conventions" />
+    <MESSAGE value="Updated undoCommand" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated undoCommand" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/AddCommand.java</url>
-          <line>66</line>
-          <properties class="AddCommand" method="undo">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="26" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
