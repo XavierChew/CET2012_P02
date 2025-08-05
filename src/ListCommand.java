@@ -28,5 +28,9 @@ public class ListCommand implements Command {
     public void execute(){
         receiver.list(this.strListCommand);
     }
+    @Override
+    public void undo(){
+
+    }
 
 }

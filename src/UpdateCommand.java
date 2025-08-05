@@ -11,6 +11,8 @@ public class UpdateCommand implements Command {
      */
     private String strUpdateCommand;
 
+    private String strForUndoUpdate = "";
+
     /**
      * Constructor of Update Command
      * @param receiver the receiver
@@ -40,5 +42,7 @@ public class UpdateCommand implements Command {
 
         receiver.update(intUpdateIndex, strUpdateData);
     }
+    @Override
+    public void undo(){}
 
 }

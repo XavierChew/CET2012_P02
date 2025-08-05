@@ -11,28 +11,30 @@ public class Receiver {
     /**
      * Variable for dataStorage
      */
-    private ArrayList<String> dataStorage = new ArrayList<>();
-    //private List<String> dataStorage = new ArrayList<>();
+    static ArrayList<String> dataStorage = new ArrayList<>();
+    static String strForUndoDelete;
+    static String strForUndoUpdate;
     /**
      * Variable for dataStorage
      */
-    private String strForUndo = "";
+
 
     /**
      * Add function for Add Command
+     *
      * @param strData Data
      */
     public void add(String strData) {
         dataStorage.add(strData);
-        strForUndo = strData;
         System.out.println("Add");
         //System.out.println("Add " + strData); //for testing
     }
 
     /**
      * Update function for Update Command
+     *
      * @param intUpdateIndex Index to be updated
-     * @param strUpdateData Data to be updated
+     * @param strUpdateData  Data to be updated
      */
     public void update(int intUpdateIndex, String strUpdateData) {
         String original = dataStorage.get(intUpdateIndex); //get original data
@@ -42,11 +44,11 @@ public class Receiver {
         String[] arrUpdate = strUpdateData.split("\\s+", 3); //same as origin regardless param
         String updatedInput;
 
-        for(int i = 0; i < arrUpdate.length; i++) {
+        for (int i = 0; i < arrUpdate.length; i++) {
             arrOrigin[i] = arrUpdate[i];
         }
         updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2]; //construct updated data
-        strForUndo = updatedInput;
+        strForUndoUpdate = original;
 
         dataStorage.set(intUpdateIndex, updatedInput);  // update in ArrayList
 
@@ -56,22 +58,22 @@ public class Receiver {
 
     /**
      * Delete function for Delete Command
+     *
      * @param intDeleteIndex Index to be updated
      */
     public void delete(int intDeleteIndex) {
+        strForUndoDelete = dataStorage.get(intDeleteIndex);
         dataStorage.remove(intDeleteIndex);
         System.out.println("Delete");
         //System.out.println("Delete " + intDeleteIndex); //for testing
     }
 
-    //    public void undo(String strInput) {
-//        if (!Objects.equals(strInput, "q")) {
-//            System.out.println("Undo");
-//        }
-//    }
+
+
 
     /**
      * List function for List Command
+     *
      * @param strListCommand the list command
      */
     public void list(String strListCommand) {
@@ -88,8 +90,8 @@ public class Receiver {
         Path filepath = Paths.get("./src/dataStore.txt");
         File file = new File(filepath.toUri());
 
-        try{
-            if(!file.exists()) {
+        try {
+            if (!file.exists()) {
                 file.createNewFile();
             }
             FileWriter fr = new FileWriter(file, true);
@@ -105,6 +107,9 @@ public class Receiver {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
 }
+
+
 
 

@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Stack;
 
 /**
@@ -8,6 +9,8 @@ public class Invoker {
      * Variable for command array
      */
     private Command[] cmdToExecute;
+
+
 
     /**
      * Set commands for execution
@@ -24,7 +27,6 @@ public class Invoker {
     public void executeCommand(Stack<Command> history) {
         for (Command cmd : this.cmdToExecute) {
             cmd.execute();
-            history.push(cmd);
+            history.push(cmd);}
         }
     }
-}

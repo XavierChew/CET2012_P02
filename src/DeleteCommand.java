@@ -10,6 +10,7 @@ public class DeleteCommand implements Command {
      * Variable for delete command
      */
     private String strDeleteCommand;
+    private String strForUndoDelete = "";
 
     /**
      * Constructor of Delete Command
@@ -26,8 +27,14 @@ public class DeleteCommand implements Command {
      */
     @Override
     public void execute(){
+
         //pass in index which match with data storage index
         receiver.delete(Integer.parseInt(this.strDeleteCommand.split(" ")[0]) - 1);
+    }
+
+    @Override
+    public void undo(){
+        Receiver.dataStorage.add(strForUndoDelete);
     }
 
 }

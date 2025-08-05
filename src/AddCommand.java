@@ -13,6 +13,8 @@ public class AddCommand implements Command {
      * Variable for add command
      */
     private String strAddCommand;
+    private String strForUndoAdd = "";
+
 
     /**
      * Constructor of Update Command
@@ -61,4 +63,9 @@ public class AddCommand implements Command {
         this.receiver.add(this.strAddCommand);
     }
 
+    @Override
+    public void undo(){
+        Receiver.dataStorage.removeLast();
+
+    }
 }
