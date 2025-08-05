@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc7f4172-45da-4bcc-ae50-94c05e1ba5bf" name="Changes" comment="check in simple sample (not including Stack and ArrayList in the program)">
+    <list default="true" id="dc7f4172-45da-4bcc-ae50-94c05e1ba5bf" name="Changes" comment="Added Store data to file function, added simple javadoc, use proper and consistent naming conventions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeleteCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Invoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Invoker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ListCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Receiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UpdateCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/payload.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754296829502</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added Store data to file function, added simple javadoc, use proper and consistent naming conventions">
+      <option name="closed" value="true" />
+      <created>1754321830086</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1754321830086</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,14 +161,15 @@
     <MESSAGE value="test" />
     <MESSAGE value="Delete unused folder" />
     <MESSAGE value="check in simple sample (not including Stack and ArrayList in the program)" />
-    <option name="LAST_COMMIT_MESSAGE" value="check in simple sample (not including Stack and ArrayList in the program)" />
+    <MESSAGE value="Added Store data to file function, added simple javadoc, use proper and consistent naming conventions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Store data to file function, added simple javadoc, use proper and consistent naming conventions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Receiver.java</url>
-          <line>86</line>
+          <line>85</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>

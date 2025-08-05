@@ -13,6 +13,9 @@ public class Main {
         String strListCommand = "List"; //for list
         Stack<Command> history = new Stack<>(); //history stack
 
+        // Split and check
+        String[] arrOrigin = strAddCommand.split("\\s+", 3);
+
         // Create receiver
         Receiver receiver = new Receiver();
 

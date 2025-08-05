@@ -13,6 +13,10 @@ public class Receiver {
      */
     private ArrayList<String> dataStorage = new ArrayList<>();
     //private List<String> dataStorage = new ArrayList<>();
+    /**
+     * Variable for dataStorage
+     */
+    private String strForUndo = "";
 
     /**
      * Add function for Add Command
@@ -20,6 +24,7 @@ public class Receiver {
      */
     public void add(String strData) {
         dataStorage.add(strData);
+        strForUndo = strData;
         System.out.println("Add");
         //System.out.println("Add " + strData); //for testing
     }
@@ -41,6 +46,7 @@ public class Receiver {
             arrOrigin[i] = arrUpdate[i];
         }
         updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2]; //construct updated data
+        strForUndo = updatedInput;
 
         dataStorage.set(intUpdateIndex, updatedInput);  // update in ArrayList
 
