@@ -1,6 +1,9 @@
 package Commands;
 
 import Tools.Receiver;
+import Exception.CustomException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Update Command class
@@ -32,34 +35,62 @@ public class UpdateCommand implements Command {
      */
     @Override
     public void execute() {
-        //get index, make it match with data storage index
-        int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
+        try {
+            String[] splitUpdateCommand = this.strUpdateCommand.split("\\s+");
 
-        //get index after the 1st space
-        int firstSpaceIndex = this.strUpdateCommand.indexOf(" ");
+            //check command format
+            if (splitUpdateCommand.length > 1) {
+                throw new CustomException("Invalid command");
+            }
 
-        //to store data to be updated
-        String strUpdateData = "";
-        if (firstSpaceIndex != -1) {
-            strUpdateData = strUpdateCommand.substring(firstSpaceIndex + 1);
+            //check valid email
+            String strEmailPattern = "([a-z0-9_.-]+)@([a-z0-9_.-]+[a-z])";
+
+            boolean found = false;
+
+            // creating the Pattern & Matcher object
+            Pattern pattern = Pattern.compile(strEmailPattern);
+            Matcher matcher = pattern.matcher(splitUpdateCommand[3]);
+
+            // the search
+            while (matcher.find()) {
+                found = true;
+            }
+
+            if (!found)
+                throw new CustomException("Invalid email");
+
+            //get index, make it match with data storage index
+            int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
+
+            //get index after the 1st space
+            int firstSpaceIndex = this.strUpdateCommand.indexOf(" ");
+
+            //to store data to be updated
+            String strUpdateData = "";
+            if (firstSpaceIndex != -1) {
+                strUpdateData = strUpdateCommand.substring(firstSpaceIndex + 1);
+            }
+            // Storing the original data for Undo.
+            strForUndoUpdate = receiver.get(intUpdateIndex);
+
+            receiver.update(intUpdateIndex, strUpdateData,true);
+            System.out.println("Update");
+        } catch (CustomException e) {
+            System.out.println("Error: " + e.getMessage());
         }
-        // Storing the original data for Undo.
-        strForUndoUpdate = receiver.get(intUpdateIndex);
 
-        receiver.update(intUpdateIndex, strUpdateData,true);
-        System.out.println("Update");
+
     }
     @Override
     public void undo(){
         int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
         receiver.update(intUpdateIndex, strForUndoUpdate,false);
-
     }
 
     @Override
     public boolean toBeSavedInHistory() {
         return true;
-
     }
 
 }

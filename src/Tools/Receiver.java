@@ -56,7 +56,6 @@ public class Receiver {
         if (printMessage) {
             System.out.println("Update");
         }
-
     }
 
     public String get(int index) {
@@ -76,7 +75,6 @@ public class Receiver {
         System.out.println("list");
         int index = 1;
         for(String data : dataStorage) {
-
             String index_Print = String.format("%02d.", index++) + " " + data;
             System.out.println(index_Print);
         }
@@ -129,56 +127,6 @@ public class Receiver {
         } catch (IOException e) {
             System.out.println("Error saving to file: " + e.getMessage());
         }
-
-//        Path filepath = Paths.get("./src/dataStore.txt");
-//        File file = new File(filepath.toUri());
-//
-//
-//
-//        try (BufferedWriter buff_writer = Files.newBufferedWriter(filepath)) {
-//            if (!file.exists()) {
-//               file.createNewFile();
-//
-//                for (String strData : this.dataStorage) {
-//                    String data = strData+ "\n";
-//                    buff_writer.write(data);
-//                }
-//            }
-//            else{
-//                try (OutputStream out = Files.newOutputStream(filepath, StandardOpenOption.APPEND);
-//                     BufferedOutputStream buff_out= new BufferedOutputStream(out)) {
-//
-//                    for (String strData : this.dataStorage) {
-//                        String data = strData+ "\n";
-//                        buff_writer.write(data);
-//                    }
-//                } catch (IOException x) {
-//                    System.err.println(x);
-//                }
-//            }
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-
-//        Path filepath = Paths.get("./src/dataStore.txt");
-//        File file = new File(filepath.toUri());
-//
-//        try {
-//            if (!file.exists()) {
-//                file.createNewFile();
-//            }
-//            FileWriter fr = new FileWriter(file, true);
-//            BufferedWriter br = new BufferedWriter(fr);
-//            PrintWriter pr = new PrintWriter(br);
-//            for (String strData : this.dataStorage) {
-//                pr.println(strData);
-//            }
-//            pr.close();
-//            br.close();
-//            fr.close();
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
     }
 
 }

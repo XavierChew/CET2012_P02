@@ -1,5 +1,6 @@
 package Commands;
 
+import Exception.CustomException;
 import Tools.Receiver;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,42 +19,12 @@ public class AddCommand implements Command {
     private String strAddCommand;
     private String strForUndoAdd = "";
 
-
     /**
      * Constructor of Update Command
      * @param receiver the receiver
      * @param strAddCommand the add command
      */
     public AddCommand(Receiver receiver, String strAddCommand) {
-//        String[] splitCommand = strAddCommand.split("\\s+"); //format [FirstName, LastName, email]
-//        String strPattern = "[a?&&a*]";
-//
-//        boolean found = false;
-//
-//        // creating the Pattern & Matcher object
-//        Pattern pattern = Pattern.compile(strPattern);
-//        Matcher matcher = pattern.matcher(strTextEx8);
-//
-//        // the search
-//        while (matcherEx8.find()) {
-//            System.out.printf("Text \"%s\" found at index %d to %d.\n",
-//                    matcherEx8.group(), matcherEx8.start(), matcherEx8.end());
-//            foundEx8 = true;
-//        }
-//
-//        if (!foundEx8)
-//            System.out.println("Nothing found.");
-//        this.receiver = receiver;
-//
-//        if (splitCommand.length != 3) {
-//            System.out.println("Invalid command format");
-//        }
-//        for (int i = 0; i < splitCommand.length; i++) {
-//            if (splitCommand[i] )
-//        }
-//        if (splitCommand.length != 3) {
-//            System.out.println("Invalid command format");
-//        }
         this.receiver = receiver;
         this.strAddCommand = strAddCommand;
     }
@@ -63,19 +34,45 @@ public class AddCommand implements Command {
      */
     @Override
     public void execute() {
-        this.receiver.add(this.strAddCommand);
-        System.out.println("Add");
+        try {
+            String[] splitAddCommand = this.strAddCommand.split("\\s+");
+
+            //check command format
+            if (splitAddCommand.length != 3) {
+                throw new CustomException("Invalid command");
+            }
+
+            //check valid email
+            String strEmailPattern = "([a-z0-9_.-]+)@([a-z0-9_.-]+[a-z])";
+
+            boolean found = false;
+
+            // creating the Pattern & Matcher object
+            Pattern pattern = Pattern.compile(strEmailPattern);
+            Matcher matcher = pattern.matcher(splitAddCommand[2]);
+
+            // the search
+            while (matcher.find()) {
+                found = true;
+            }
+
+            if (!found)
+                throw new CustomException("Invalid email");
+
+            this.receiver.add(this.strAddCommand);
+            System.out.println("Add");
+        } catch (CustomException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     @Override
     public void undo(){
         Receiver.dataStorage.removeLast();
-
     }
 
     @Override
     public boolean toBeSavedInHistory() {
         return true;
-
     }
 }

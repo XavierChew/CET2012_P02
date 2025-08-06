@@ -1,5 +1,6 @@
 package Commands;
 
+import Exception.CustomException;
 import Tools.Receiver;
 import java.util.Stack;
 
@@ -15,7 +16,6 @@ public class UndoCommand implements Command {
         this.history = history;
     }
 
-
     @Override
     public void execute() {
         Command lastAction = history.pop();
@@ -24,13 +24,11 @@ public class UndoCommand implements Command {
     }
 
     @Override
-    public void  undo() {
+    public void  undo() {}
 
-    }
     @Override
     public boolean toBeSavedInHistory() {
         return false;
-
     }
 }
 

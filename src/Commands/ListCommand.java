@@ -1,5 +1,6 @@
 package Commands;
 
+import Exception.CustomException;
 import Tools.Receiver;
 
 /**
@@ -32,13 +33,11 @@ public class ListCommand implements Command {
         receiver.list();
     }
     @Override
-    public void undo(){
+    public void undo(){}
 
-    }
     @Override
     public boolean toBeSavedInHistory() {
         return false;
-
     }
 
 }

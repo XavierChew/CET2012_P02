@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="dc7f4172-45da-4bcc-ae50-94c05e1ba5bf" name="Changes" comment="Prevented undoCommand from going into Stack command history">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/DeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/DeleteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/ListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/UndoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/UndoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/UpdateCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exception/CustomException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/CustomException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tools/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/Receiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStore.txt" afterDir="false" />
     </list>
@@ -36,6 +43,9 @@
     &quot;accountId&quot;: &quot;4ac7f51e-47e5-4543-9107-e9814fc1b321&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -77,6 +87,9 @@
       <updated>1754031962852</updated>
       <workItem from="1754031964090" duration="1458000" />
       <workItem from="1754038048908" duration="12751000" />
+      <workItem from="1754487729379" duration="39000" />
+      <workItem from="1754487790720" duration="194000" />
+      <workItem from="1754488083633" duration="5651000" />
     </task>
     <task id="LOCAL-00001" summary="Test add commit">
       <option name="closed" value="true" />
@@ -179,6 +192,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Test add commit" />
