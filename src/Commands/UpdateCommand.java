@@ -46,13 +46,13 @@ public class UpdateCommand implements Command {
         // Storing the original data for Undo.
         strForUndoUpdate = receiver.get(intUpdateIndex);
 
-        receiver.update(intUpdateIndex, strUpdateData);
+        receiver.update(intUpdateIndex, strUpdateData,true);
         System.out.println("Update");
     }
     @Override
     public void undo(){
         int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
-        receiver.update(intUpdateIndex, strForUndoUpdate);
+        receiver.update(intUpdateIndex, strForUndoUpdate,false);
 
     }
 

@@ -40,58 +40,44 @@ public class Receiver {
      * @param intUpdateIndex Index to be updated
      * @param strUpdateData  Data to be updated
      */
-    public void update(int intUpdateIndex, String strUpdateData) {
-        String original = dataStorage.get(intUpdateIndex); //get original data
+    public void update(int intUpdateIndex, String strUpdateData, boolean printMessage) {
+        String original = (String)dataStorage.get(intUpdateIndex);
+        String[] arrOrigin = original.split("\\s+", 3);
+        String[] arrUpdate = strUpdateData.split("\\s+", 3);
 
-        // Split and modify
-        String[] arrOrigin = original.split("\\s+", 3); //format [FirstName, LastName, email]
-        String[] arrUpdate = strUpdateData.split("\\s+", 3); //same as origin regardless param
-        String updatedInput;
-
-        for (int i = 0; i < arrUpdate.length; i++) {
+        for(int i = 0; i < arrUpdate.length; ++i) {
             arrOrigin[i] = arrUpdate[i];
         }
-        updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2]; //construct updated data
+
+        String updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2];
         strForUndoUpdate = original;
-
-        dataStorage.set(intUpdateIndex, updatedInput);  // update in ArrayList
-
-        //System.out.println("Update");
-        //System.out.println("Update " + strUpdateData); //for testing
-    }
-
-    public String get(int index){
-        return dataStorage.get(index);
+        dataStorage.set(intUpdateIndex, updatedInput);
+        if (printMessage) {
+            System.out.println("Update");
+        }
 
     }
 
+    public String get(int index) {
+        return (String)dataStorage.get(index);
+    }
 
-
-
-    /**
-     * Delete function for Delete Command
-     *
-     * @param intDeleteIndex Index to be updated
-     */
     public void delete(int intDeleteIndex) {
-        strForUndoDelete = dataStorage.get(intDeleteIndex);
         dataStorage.remove(intDeleteIndex);
-        //System.out.println("Delete");
-        //System.out.println("Delete " + intDeleteIndex); //for testing
+        System.out.println("Delete");
     }
 
+    public void insert(int index, String data) {
+        dataStorage.add(index, data);
+    }
 
-
-
-    /**
-     * List function for List Command
-     *
-     */
     public void list() {
-        System.out.println("List");
-        for (String index : dataStorage) {
+        System.out.println("list");
+
+        for(String index : dataStorage) {
             System.out.println(index);
         }
+
     }
 
     /**

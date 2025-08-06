@@ -1,53 +1,41 @@
-package Commands;
+package Commands;//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
 
+import Commands.Command;
 import Tools.Receiver;
 
-/**
- * Delete Command class
- */
 public class DeleteCommand implements Command {
-    /**
-     * Variable for receiver
-     */
     private Receiver receiver;
-    /**
-     * Variable for delete command
-     */
     private String strDeleteCommand;
-    private String strForUndoDelete = "";
+    private String deletedString = "";
+    private int deletedIndex;
 
-    /**
-     * Constructor of Delete Command
-     * @param receiver the receiver
-     * @param strDeleteCommand the delete command
-     */
     public DeleteCommand(Receiver receiver, String strDeleteCommand) {
         this.receiver = receiver;
         this.strDeleteCommand = strDeleteCommand;
+    }
 
+    public void execute() {
+        try {
+            this.deletedIndex = Integer.parseInt(this.strDeleteCommand) - 1;
+            this.deletedString = this.receiver.get(this.deletedIndex);
+            this.receiver.delete(this.deletedIndex);
+        } catch (Exception e) {
+            System.out.println("Error in DeleteCommand execute(): " + e.getMessage());
+        }
 
     }
 
-    /**
-     * Execute method
-     */
-    @Override
-    public void execute(){
+    public void undo() {
+        if (this.deletedString != null) {
+            this.receiver.insert(this.deletedIndex, this.deletedString);
+        }
 
-        //pass in index which match with data storage index
-        receiver.delete(Integer.parseInt(this.strDeleteCommand.split(" ")[0]) - 1);
-        System.out.println("Delete");
     }
 
-    @Override
-    public void undo(){
-        Receiver.dataStorage.add(strForUndoDelete);
-    }
-
-    @Override
     public boolean toBeSavedInHistory() {
         return true;
-
     }
-
 }

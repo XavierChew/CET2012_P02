@@ -20,7 +20,6 @@ public class Main {
         String strListCommand = "List"; //for list
         Stack<Command> history = new Stack<>(); //history stack
 
-
         // Create receiver
         Receiver receiver = new Receiver();
 
@@ -32,14 +31,13 @@ public class Main {
         Command updateCommand = new UpdateCommand(receiver, strUpdateCommand);
         Command updateCommand2 = new UpdateCommand(receiver, strUpdateCommand2);
         Command deleteCommand = new DeleteCommand(receiver, strDeleteCommand);
+        Command deleteCommand2 = new DeleteCommand(receiver, strDeleteCommand);
         Command undoCommand = new UndoCommand(receiver, history);
         Command listCommand = new ListCommand(receiver);
 
         // Store to command objects array
 //        Command[] cmdToExecute = {addCommand, updateCommand, listCommand};
-        Command[] cmdToExecute = {addCommand, addCommand1,addCommand2,updateCommand,updateCommand2,  undoCommand, undoCommand, listCommand};
-        //might need to review this to make it more automatic end
-
+        Command[] cmdToExecute = {addCommand, addCommand1,addCommand2,updateCommand,updateCommand2, undoCommand, undoCommand, deleteCommand, listCommand, deleteCommand2, undoCommand, undoCommand, listCommand};
         // Create invoker
         Invoker invoker = new Invoker();
 
