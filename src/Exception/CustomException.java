@@ -1,7 +1,7 @@
 package Exception;
 
-public class customException extends Exception {
-    MyCustomCheckedException(String msg) {
+public class CustomException  extends Exception {
+    CustomException(String msg) {
         super(msg);
     }
 }
