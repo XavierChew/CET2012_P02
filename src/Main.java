@@ -1,3 +1,7 @@
+import Commands.*;
+import Tools.Invoker;
+import Tools.Receiver;
+
 import java.util.Stack;
 
 /**
@@ -28,8 +32,8 @@ public class Main {
         Command updateCommand = new UpdateCommand(receiver, strUpdateCommand);
         Command updateCommand2 = new UpdateCommand(receiver, strUpdateCommand2);
         Command deleteCommand = new DeleteCommand(receiver, strDeleteCommand);
-        Command undoCommand = new UndoCommand(receiver, strUndoCommand,history);
-        Command listCommand = new ListCommand(receiver, strListCommand);
+        Command undoCommand = new UndoCommand(receiver, history);
+        Command listCommand = new ListCommand(receiver);
 
         // Store to command objects array
 //        Command[] cmdToExecute = {addCommand, updateCommand, listCommand};
