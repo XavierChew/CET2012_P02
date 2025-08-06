@@ -1,8 +1,6 @@
 package Tools;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.file.Files;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -22,6 +20,9 @@ public class Receiver {
      * Variable for dataStorage
      */
 
+    public Receiver() {
+        loadExistingFile();
+    }
 
     /**
      * Add function for Add Command
@@ -82,20 +83,82 @@ public class Receiver {
 
     }
 
+    private void loadExistingFile() {
+        Path filepath = Paths.get("./src/dataStore.txt");
+        File file = new File(filepath.toUri());
+
+        if (!file.exists()) {
+            return; // Nothing to load
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    dataStorage.add(line.trim());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading file: " + e.getMessage());
+        }
+    }
+
     /**
      * Store data to file
      */
     public void storeToFile() {
         Path filepath = Paths.get("./src/dataStore.txt");
+        File file = new File(filepath.toUri());
 
-        try (BufferedWriter buff_writer = Files.newBufferedWriter(filepath)) {
-            for (String strData : this.dataStorage) {
-                String data = strData+ "\n";
-                buff_writer.write(data);
+        try {
+            // Create file if it doesn't exist
+            if (!file.exists()) {
+                file.createNewFile();
             }
+
+            // Open in append mode
+            FileWriter fileWriter = new FileWriter(file, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, false));
+
+            for (String strData : dataStorage) {
+                bufferedWriter.write(strData);
+                bufferedWriter.newLine();
+            }
+
+            bufferedWriter.close();
         } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error saving to file: " + e.getMessage());
         }
+
+//        Path filepath = Paths.get("./src/dataStore.txt");
+//        File file = new File(filepath.toUri());
+//
+//
+//
+//        try (BufferedWriter buff_writer = Files.newBufferedWriter(filepath)) {
+//            if (!file.exists()) {
+//               file.createNewFile();
+//
+//                for (String strData : this.dataStorage) {
+//                    String data = strData+ "\n";
+//                    buff_writer.write(data);
+//                }
+//            }
+//            else{
+//                try (OutputStream out = Files.newOutputStream(filepath, StandardOpenOption.APPEND);
+//                     BufferedOutputStream buff_out= new BufferedOutputStream(out)) {
+//
+//                    for (String strData : this.dataStorage) {
+//                        String data = strData+ "\n";
+//                        buff_writer.write(data);
+//                    }
+//                } catch (IOException x) {
+//                    System.err.println(x);
+//                }
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Error: " + e.getMessage());
+//        }
 
 //        Path filepath = Paths.get("./src/dataStore.txt");
 //        File file = new File(filepath.toUri());

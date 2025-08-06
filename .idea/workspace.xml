@@ -4,53 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eff83b1f-c118-4a9b-852d-eed42e668654" name="Changes" comment="Finalised logic for all the Commands">
+    <list default="true" id="dc7f4172-45da-4bcc-ae50-94c05e1ba5bf" name="Changes" comment="Prevented undoCommand from going into Stack command history">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tools/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/Receiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStore.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "XavierChew"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;winese&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/XavierChew/CET2012_P02",
-    "accountId": "092dc977-67ce-421e-a29d-7c534365884f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/XavierChew/CET2012_P02.git&quot;,
+    &quot;accountId&quot;: &quot;4ac7f51e-47e5-4543-9107-e9814fc1b321&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
-  <component name="ProjectId" id="30uEhaZrxFy1ef8XG3SHdNsBUdP" />
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="30fwVyfiGl2BaJOm2U8I3fwGMPl" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jianh/OneDrive/Desktop/TFIP/Course 2 - Programming Paradigms Advanced Java/Practicum/CET2012_P02&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -61,32 +70,126 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eff83b1f-c118-4a9b-852d-eed42e668654" name="Changes" comment="" />
-      <created>1754469178467</created>
+      <changelist id="dc7f4172-45da-4bcc-ae50-94c05e1ba5bf" name="Changes" comment="" />
+      <created>1754031962852</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1754469178467</updated>
-      <workItem from="1754469180096" duration="554000" />
+      <updated>1754031962852</updated>
+      <workItem from="1754031964090" duration="1458000" />
+      <workItem from="1754038048908" duration="12751000" />
     </task>
-    <task id="LOCAL-00001" summary="Finalised logic for all the Commands">
+    <task id="LOCAL-00001" summary="Test add commit">
       <option name="closed" value="true" />
-      <created>1754469382851</created>
+      <created>1754032016757</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1754469382851</updated>
+      <updated>1754032016758</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add Invoker class">
+      <option name="closed" value="true" />
+      <created>1754032131944</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754032131944</updated>
+    </task>
+    <task id="LOCAL-00003" summary="test">
+      <option name="closed" value="true" />
+      <created>1754032448586</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1754032448586</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Delete unused folder">
+      <option name="closed" value="true" />
+      <created>1754033142897</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1754033142897</updated>
+    </task>
+    <task id="LOCAL-00005" summary="check in simple sample (not including Stack and ArrayList in the program)">
+      <option name="closed" value="true" />
+      <created>1754071424778</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1754071424778</updated>
+    </task>
+    <task id="LOCAL-00006" summary="check in simple sample (not including Stack and ArrayList in the program)">
+      <option name="closed" value="true" />
+      <created>1754071571334</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1754071571334</updated>
+    </task>
+    <task id="LOCAL-00007" summary="check in simple sample (not including Stack and ArrayList in the program)">
+      <option name="closed" value="true" />
+      <created>1754288527407</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1754288527408</updated>
+    </task>
+    <task id="LOCAL-00008" summary="check in simple sample (not including Stack and ArrayList in the program)">
+      <option name="closed" value="true" />
+      <created>1754296829502</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1754296829502</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updated undoCommand">
+      <option name="closed" value="true" />
+      <created>1754383888043</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1754383888043</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updated undoCommand">
+      <option name="closed" value="true" />
+      <created>1754383997301</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1754383997301</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Updated undoCommand">
+      <option name="closed" value="true" />
+      <created>1754390243819</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1754390243819</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Prevented undoCommand from going into Stack command history">
+      <option name="closed" value="true" />
+      <created>1754390327479</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1754390327479</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$/.." />
-    </ignored-roots>
-    <MESSAGE value="Finalised logic for all the Commands" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finalised logic for all the Commands" />
+    <MESSAGE value="Test add commit" />
+    <MESSAGE value="Add Invoker class" />
+    <MESSAGE value="Add test variable" />
+    <MESSAGE value="test" />
+    <MESSAGE value="Delete unused folder" />
+    <MESSAGE value="check in simple sample (not including Stack and ArrayList in the program)" />
+    <MESSAGE value="Added Store data to file function, added simple javadoc, use proper and consistent naming conventions" />
+    <MESSAGE value="Updated undoCommand" />
+    <MESSAGE value="Prevented undoCommand from going into Stack command history" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prevented undoCommand from going into Stack command history" />
   </component>
 </project>
