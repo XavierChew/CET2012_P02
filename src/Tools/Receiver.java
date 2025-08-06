@@ -1,6 +1,8 @@
 package Tools;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -84,7 +86,6 @@ public class Receiver {
     /**
      * List function for List Command
      *
-     * @param strListCommand the list command
      */
     public void list() {
         System.out.println("List");
@@ -98,24 +99,35 @@ public class Receiver {
      */
     public void storeToFile() {
         Path filepath = Paths.get("./src/dataStore.txt");
-        File file = new File(filepath.toUri());
 
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            FileWriter fr = new FileWriter(file, true);
-            BufferedWriter br = new BufferedWriter(fr);
-            PrintWriter pr = new PrintWriter(br);
+        try (BufferedWriter buff_writer = Files.newBufferedWriter(filepath)) {
             for (String strData : this.dataStorage) {
-                pr.println(strData);
+                String data = strData+ "\n";
+                buff_writer.write(data);
             }
-            pr.close();
-            br.close();
-            fr.close();
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
+
+//        Path filepath = Paths.get("./src/dataStore.txt");
+//        File file = new File(filepath.toUri());
+//
+//        try {
+//            if (!file.exists()) {
+//                file.createNewFile();
+//            }
+//            FileWriter fr = new FileWriter(file, true);
+//            BufferedWriter br = new BufferedWriter(fr);
+//            PrintWriter pr = new PrintWriter(br);
+//            for (String strData : this.dataStorage) {
+//                pr.println(strData);
+//            }
+//            pr.close();
+//            br.close();
+//            fr.close();
+//        } catch (IOException e) {
+//            System.out.println("Error: " + e.getMessage());
+//        }
     }
 
 }
