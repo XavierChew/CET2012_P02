@@ -20,6 +20,8 @@ public class UpdateCommand implements Command {
 
     private String strForUndoUpdate = "";
 
+    private boolean hasError = false;
+
     /**
      * Constructor of Update Command
      * @param receiver the receiver
@@ -38,50 +40,70 @@ public class UpdateCommand implements Command {
         try {
             String[] splitUpdateCommand = this.strUpdateCommand.split("\\s+");
 
-            //check command format
-            if (splitUpdateCommand.length > 1) {
+            // check command format
+            if (splitUpdateCommand.length < 1) {
                 throw new CustomException("Invalid command");
             }
 
-            //check valid email
-            String strEmailPattern = "([a-z0-9_.-]+)@([a-z0-9_.-]+[a-z])";
+            // regex patterns
+            String data3 = "^([a-zA-Z0-9_]+|[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
+            String data1 = "[a-zA-Z0-9_]+";
+            String data2 = "[a-zA-Z0-9_]+";
 
-            boolean found = false;
+            // validate input based on length
+            if (splitUpdateCommand.length == 4) {
+                Pattern pattern = Pattern.compile(data3);
+                Matcher matcher = pattern.matcher(splitUpdateCommand[3]);
+                if (!matcher.matches()) {
+                    throw new CustomException("Invalid email");
+                }
 
-            // creating the Pattern & Matcher object
-            Pattern pattern = Pattern.compile(strEmailPattern);
-            Matcher matcher = pattern.matcher(splitUpdateCommand[3]);
+            } else if (splitUpdateCommand.length == 3) {
+                Pattern pattern1 = Pattern.compile(data1);
+                Pattern pattern2 = Pattern.compile(data2);
+                Matcher matcher1 = pattern1.matcher(splitUpdateCommand[1]);
+                Matcher matcher2 = pattern2.matcher(splitUpdateCommand[2]);
 
-            // the search
-            while (matcher.find()) {
-                found = true;
+                if (!matcher1.matches() || !matcher2.matches()) {
+                    throw new CustomException("Invalid data");
+                }
+
+            } else if (splitUpdateCommand.length == 2) {
+                Pattern pattern = Pattern.compile(data1);
+                Matcher matcher = pattern.matcher(splitUpdateCommand[1]);
+
+                if (!matcher.matches()) {
+                    throw new CustomException("Invalid data");
+                }
+
+            } else {
+                throw new CustomException("Invalid command length");
             }
 
-            if (!found)
-                throw new CustomException("Invalid email");
+            // perform update
+            int intUpdateIndex = Integer.parseInt(splitUpdateCommand[0]) - 1;
 
-            //get index, make it match with data storage index
-            int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
-
-            //get index after the 1st space
             int firstSpaceIndex = this.strUpdateCommand.indexOf(" ");
-
-            //to store data to be updated
             String strUpdateData = "";
             if (firstSpaceIndex != -1) {
-                strUpdateData = strUpdateCommand.substring(firstSpaceIndex + 1);
+                strUpdateData = this.strUpdateCommand.substring(firstSpaceIndex + 1);
             }
-            // Storing the original data for Undo.
+
+            // store for undo
             strForUndoUpdate = receiver.get(intUpdateIndex);
 
-            receiver.update(intUpdateIndex, strUpdateData,true);
+            receiver.update(intUpdateIndex, strUpdateData, true);
             System.out.println("Update");
+
         } catch (CustomException e) {
             System.out.println("Error: " + e.getMessage());
+            hasError = true;
+        } catch (Exception e) {
+            System.out.println("Error: Invalid input format.");
+            hasError = true;
         }
-
-
     }
+
     @Override
     public void undo(){
         int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
@@ -90,7 +112,7 @@ public class UpdateCommand implements Command {
 
     @Override
     public boolean toBeSavedInHistory() {
-        return true;
+        return !hasError;
     }
 
 }

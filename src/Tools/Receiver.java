@@ -1,6 +1,7 @@
 package Tools;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -20,9 +21,6 @@ public class Receiver {
      * Variable for dataStorage
      */
 
-    public Receiver() {
-        loadExistingFile();
-    }
 
     /**
      * Add function for Add Command
@@ -42,17 +40,19 @@ public class Receiver {
      * @param strUpdateData  Data to be updated
      */
     public void update(int intUpdateIndex, String strUpdateData, boolean printMessage) {
-        String original = (String)dataStorage.get(intUpdateIndex);
+
+        String original = dataStorage.get(intUpdateIndex);
         String[] arrOrigin = original.split("\\s+", 3);
         String[] arrUpdate = strUpdateData.split("\\s+", 3);
 
-        for(int i = 0; i < arrUpdate.length; ++i) {
+        for (int i = 0; i < arrUpdate.length; ++i) {
             arrOrigin[i] = arrUpdate[i];
         }
 
         String updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2];
         strForUndoUpdate = original;
         dataStorage.set(intUpdateIndex, updatedInput);
+
         if (printMessage) {
             System.out.println("Update");
         }

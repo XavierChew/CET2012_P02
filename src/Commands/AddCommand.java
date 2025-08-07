@@ -18,6 +18,7 @@ public class AddCommand implements Command {
      */
     private String strAddCommand;
     private String strForUndoAdd = "";
+    private boolean hasError = false;
 
     /**
      * Constructor of Update Command
@@ -43,26 +44,40 @@ public class AddCommand implements Command {
             }
 
             //check valid email
-            String strEmailPattern = "([a-z0-9_.-]+)@([a-z0-9_.-]+[a-z])";
+            String strEmailPattern;
 
-            boolean found = false;
+//check command format
 
-            // creating the Pattern & Matcher object
-            Pattern pattern = Pattern.compile(strEmailPattern);
-            Matcher matcher = pattern.matcher(splitAddCommand[2]);
+            for (int i = 0; i < splitAddCommand.length; i++) {
+                if (i == 0 || i == 1) {
+                    strEmailPattern = "[a-zA-Z0-9_]";
+                }
+                else {
+                    strEmailPattern = "^([a-zA-Z0-9_]+|[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
+                }
 
-            // the search
-            while (matcher.find()) {
-                found = true;
+                boolean found = false;
+
+                // creating the Pattern & Matcher object
+                Pattern pattern = Pattern.compile(strEmailPattern);
+                Matcher matcher = pattern.matcher(splitAddCommand[i]);
+
+                // the search
+                while (matcher.find()) {
+                    found = true;
+                }
+
+                if (!found && i != 2)
+                    throw new CustomException("Invalid command/email");
+                    hasError = true;
+
             }
-
-            if (!found)
-                throw new CustomException("Invalid email");
 
             this.receiver.add(this.strAddCommand);
             System.out.println("Add");
         } catch (CustomException e) {
             System.out.println("Error: " + e.getMessage());
+            hasError = true;
         }
     }
 
@@ -73,6 +88,6 @@ public class AddCommand implements Command {
 
     @Override
     public boolean toBeSavedInHistory() {
-        return true;
+        return !hasError;
     }
 }
