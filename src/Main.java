@@ -16,7 +16,7 @@ public class Main {
         String strAddCommand3 = "3rdName 3rdlast email3";
         String strUpdateCommand = "1 FirstNameChange1";
         String strUpdateCommand2 = "2 FirstNameChange2 lastname2";
-        String strDeleteCommand = "1"; //for delete
+        String strDeleteCommand = "1 79"; //for delete
         String strUndoCommand = "Undo"; //for undo
         String strListCommand = "List"; //for list
         Stack<Command> history = new Stack<>(); //history stack
