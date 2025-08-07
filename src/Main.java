@@ -24,8 +24,6 @@ public class Main {
         // Create receiver
         Receiver receiver = new Receiver();
 
-        receiver.loadExistingFile();
-
         //might need to review this to make it more automatic start
         // Create command objects
         Command addCommand = new AddCommand(receiver, strAddCommand1);
@@ -40,7 +38,7 @@ public class Main {
 
         // Store to command objects array
 //        Command[] cmdToExecute = {addCommand, updateCommand, listCommand};
-        Command[] cmdToExecute = {deleteCommand};
+        Command[] cmdToExecute = {addCommand1, addCommand2, updateCommand, deleteCommand, undoCommand, listCommand};
         Invoker invoker = new Invoker();
 
         // Set and execute commands

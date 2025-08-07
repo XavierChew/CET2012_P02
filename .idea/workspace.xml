@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="dc7f4172-45da-4bcc-ae50-94c05e1ba5bf" name="Changes" comment="Prevented undoCommand from going into Stack command history">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Commands/DeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/DeleteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/UndoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/UndoCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tools/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/Receiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStore.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +263,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754554828861</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Prevented undoCommand from going into Stack command history">
+      <option name="closed" value="true" />
+      <created>1754555339207</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1754555339207</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

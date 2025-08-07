@@ -11,6 +11,10 @@ import java.util.ArrayList;
  */
 public class Receiver {
 
+    public Receiver() {
+        loadExistingFile();
+    }
+
     /**
      * Variable for dataStorage
      */
