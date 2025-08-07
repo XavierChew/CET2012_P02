@@ -70,11 +70,16 @@ public class Receiver {
     }
 
     public void list() {
-        System.out.println("list");
+        if (dataStorage.isEmpty()) {
+            System.out.println("Data store is empty");
+        }
+        else {System.out.println("list");
         int index = 1;
+
         for(String data : dataStorage) {
             String index_Print = String.format("%02d.", index++) + " " + data;
             System.out.println(index_Print);
+        }
         }
 
     }

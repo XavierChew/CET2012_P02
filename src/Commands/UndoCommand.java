@@ -18,9 +18,18 @@ public class UndoCommand implements Command {
 
     @Override
     public void execute() {
-        Command lastAction = history.pop();
-        lastAction.undo();
-        System.out.println("Undo");
+        try {
+            if (history.isEmpty()) {
+                throw new CustomException("History stack is empty");
+            }
+            Command lastAction = history.pop();
+            lastAction.undo();
+            System.out.println("Undo");
+        }
+        catch (CustomException e) {
+                System.out.println("Error: " + e.getMessage());
+
+            }
     }
 
     @Override
