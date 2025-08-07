@@ -40,7 +40,7 @@ public class Main {
 
         // Store to command objects array
 //        Command[] cmdToExecute = {addCommand, updateCommand, listCommand};
-        Command[] cmdToExecute = {addCommand,addCommand1,deleteCommand,listCommand};
+        Command[] cmdToExecute = {deleteCommand};
         Invoker invoker = new Invoker();
 
         // Set and execute commands

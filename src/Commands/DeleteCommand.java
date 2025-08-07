@@ -26,6 +26,9 @@ public class DeleteCommand implements Command {
         try {
             String[] splitDeleteCommand = this.strDeleteCommand.split("\\s+");
 
+            if (Receiver.dataStorage.isEmpty()) {
+                throw new CustomException("Unable to delete, Data Storage is empty.");
+            }
             //check command format
             if (splitDeleteCommand.length != 1 ) {
                 throw new CustomException("Invalid command");
@@ -57,6 +60,7 @@ public class DeleteCommand implements Command {
             hasError = true;
             //System.out.println("Error in DeleteCommand execute(): " + e.getMessage());
         }
+
     }
 
     public void undo() {
