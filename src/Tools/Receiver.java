@@ -53,10 +53,8 @@ public class Receiver {
         strForUndoUpdate = original;
         dataStorage.set(intUpdateIndex, updatedInput);
 
-        if (printMessage) {
-            System.out.println("Update");
         }
-    }
+
 
     public String get(int index) {
         return (String)dataStorage.get(index);
