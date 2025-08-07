@@ -17,7 +17,6 @@ public class AddCommand implements Command {
      * Variable for add command
      */
     private String strAddCommand;
-    private String strForUndoAdd = "";
     private boolean hasError = false;
 
     /**
