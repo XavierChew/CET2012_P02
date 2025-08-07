@@ -15,6 +15,7 @@ public class DeleteCommand implements Command {
     private String strDeleteCommand;
     private String deletedString = "";
     private int deletedIndex;
+    private boolean hasError = false;
 
     public DeleteCommand(Receiver receiver, String strDeleteCommand) {
         this.receiver = receiver;
@@ -44,14 +45,16 @@ public class DeleteCommand implements Command {
                 found = true;
             }
 
-            if (!found)
+            if (!found){
                 throw new CustomException("Invalid index");
+            }
 
             this.deletedIndex = Integer.parseInt(this.strDeleteCommand) - 1;
             this.deletedString = this.receiver.get(this.deletedIndex);
             this.receiver.delete(this.deletedIndex);
         } catch (CustomException e) {
             System.out.println("Error: " + e.getMessage());
+            hasError = true;
             //System.out.println("Error in DeleteCommand execute(): " + e.getMessage());
         }
     }
@@ -64,10 +67,11 @@ public class DeleteCommand implements Command {
             this.receiver.insert(this.deletedIndex, this.deletedString);
         } catch (CustomException e) {
             System.out.println("Error: " + e.getMessage());
+            hasError = true;
         }
     }
 
     public boolean toBeSavedInHistory() {
-        return true;
+        return !hasError;
     }
 }
