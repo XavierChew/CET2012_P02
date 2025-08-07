@@ -79,7 +79,7 @@ public class Receiver {
 
     }
 
-    private void loadExistingFile() {
+    public void loadExistingFile() {
         Path filepath = Paths.get("./src/dataStore.txt");
         File file = new File(filepath.toUri());
 

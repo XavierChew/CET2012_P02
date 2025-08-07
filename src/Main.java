@@ -10,6 +10,7 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) {
+
         String strAddCommand1 = "firstName1 lastName1 email1";
         String strAddCommand2 = "secondName 2ndlast email2";
         String strAddCommand3 = "3rdName 3rdlast email3";
@@ -22,6 +23,8 @@ public class Main {
 
         // Create receiver
         Receiver receiver = new Receiver();
+
+        receiver.loadExistingFile();
 
         //might need to review this to make it more automatic start
         // Create command objects
