@@ -10,8 +10,8 @@ import java.util.Stack;
 public class Main {
 
     public static void main(String[] args) {
-        String strAddCommand1 = "FirstName1 LastName1 email1";
-        String strAddCommand2 = "2ndName 2ndlast email2";
+        String strAddCommand1 = "firstName1 lastName1 email1";
+        String strAddCommand2 = "secondName 2ndlast email2";
         String strAddCommand3 = "3rdName 3rdlast email3";
         String strUpdateCommand = "1 FirstNameChange1";
         String strUpdateCommand2 = "2 FirstNameChange2 lastname2";

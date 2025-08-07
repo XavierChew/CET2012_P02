@@ -50,7 +50,7 @@ public class AddCommand implements Command {
 
             for (int i = 0; i < splitAddCommand.length; i++) {
                 if (i == 0 || i == 1) {
-                    strEmailPattern = "[a-zA-Z0-9_]";
+                    strEmailPattern = "^[a-zA-Z0-9_]+$";
                 }
                 else {
                     strEmailPattern = "^([a-zA-Z0-9_]+|[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
@@ -69,10 +69,12 @@ public class AddCommand implements Command {
 
                 if (!found && i != 2)
                     throw new CustomException("Invalid command/email");
-                    hasError = true;
 
             }
+            splitAddCommand[0] = splitAddCommand[0].substring(0,1).toUpperCase() + splitAddCommand[0].substring(1);
+            splitAddCommand[1] = splitAddCommand[1].substring(0,1).toUpperCase() + splitAddCommand[1].substring(1);
 
+            this.strAddCommand = String.join(" ", splitAddCommand);
             this.receiver.add(this.strAddCommand);
             System.out.println("Add");
         } catch (CustomException e) {
