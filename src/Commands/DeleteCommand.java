@@ -27,7 +27,7 @@ public class DeleteCommand implements Command {
             String[] splitDeleteCommand = this.strDeleteCommand.split("\\s+");
 
             //check command format
-            if (splitDeleteCommand.length < 0) {
+            if (splitDeleteCommand.length != 1 ) {
                 throw new CustomException("Invalid command");
             }
 
