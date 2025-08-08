@@ -23,6 +23,9 @@ public class DeleteCommand implements Command {
     }
 
     public void execute() {
+        if (this.strDeleteCommand == null) {
+            throw new CustomException("command cannot be null.");
+        }
 
         String[] splitDeleteCommand = this.strDeleteCommand.split("\\s+");
 

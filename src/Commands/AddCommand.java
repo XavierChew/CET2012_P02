@@ -38,6 +38,9 @@ public class AddCommand implements Command {
     @Override
     public void execute(){
         //straddcmd check null
+        if (this.strAddCommand == null) {
+            throw new CustomException("command cannot be null.");
+        }
 
         String[] splitAddCommand = this.strAddCommand.split("\\s+");
 

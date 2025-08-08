@@ -20,7 +20,7 @@ public class Main {
         Receiver receiver = new Receiver();
         Command[] cmdlist = {
 //                new AddCommand(receiver,"first_name Last_name Email"),
-                new AddCommand(receiver,"test test test@test.com"),
+                new AddCommand(receiver,null),
                 new ListCommand(receiver),
         };
 

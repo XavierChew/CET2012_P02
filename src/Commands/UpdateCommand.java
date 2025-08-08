@@ -41,6 +41,9 @@ public class UpdateCommand implements Command {
      */
     @Override
     public void execute() {
+        if (this.strUpdateCommand == null) {
+            throw new CustomException("command cannot be null.");
+        }
 //        try {
         String[] splitUpdateCommand = this.strUpdateCommand.split("\\s+");
 
