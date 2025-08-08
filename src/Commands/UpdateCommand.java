@@ -80,8 +80,6 @@ public class UpdateCommand implements Command {
 
         // regex patterns
         String strPatterns = "^([a-zA-Z0-9_]+|[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
-//            String data1 = "[a-zA-Z0-9_]+";
-//            String data2 = "[a-zA-Z0-9_]+";
 
         // validate input based on length
         if (splitUpdateCommand.length == 4) {
@@ -93,32 +91,6 @@ public class UpdateCommand implements Command {
             }
 
         }
-
-
-
-
-//            else if (splitUpdateCommand.length == 3) {
-//                Pattern pattern1 = Pattern.compile(data1);
-//                Pattern pattern2 = Pattern.compile(data2);
-//                Matcher matcher1 = pattern1.matcher(splitUpdateCommand[1]);
-//                Matcher matcher2 = pattern2.matcher(splitUpdateCommand[2]);
-//
-//                if (!matcher1.matches() || !matcher2.matches()) {
-//                    throw new CustomException("Invalid data");
-//                }
-//
-//            } else if (splitUpdateCommand.length == 2) {
-//                Pattern pattern = Pattern.compile(data1);
-//                Matcher matcher = pattern.matcher(splitUpdateCommand[1]);
-//
-//                if (!matcher.matches()) {
-//                    throw new CustomException("Invalid data");
-//                }
-//
-//            } else {
-//                throw new CustomException("Invalid command length");
-//            }
-
         // perform update
         for (int i = 1; i < splitUpdateCommand.length; i++) {
             splitUpdateCommand[i] = splitUpdateCommand[i].substring(0,1).toUpperCase() + splitUpdateCommand[i].substring(1).toLowerCase();
@@ -139,14 +111,6 @@ public class UpdateCommand implements Command {
 
         receiver.update(intUpdateIndex, strUpdateData, true);
         System.out.println("Update");
-
-//        } catch (CustomException e) {
-//            System.out.println("Error: " + e.getMessage());
-//            hasError = true;
-//        } catch (Exception e) {
-//            System.out.println("Error: Invalid input format.");
-//            hasError = true;
-//        }
     }
 
     /**
