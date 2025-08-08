@@ -1,36 +1,50 @@
 package Tools;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.ArrayList;
 
+import static java.nio.file.Files.createFile;
+
 /**
- * The {@code Receiver} class manages the core data storage for command operations.
- * It supports adding, updating, deleting, inserting, and listing entries.
- * It also handles loading from and saving to a persistent file (`dataStore.txt`).
+ * The {@code Receiver} class contains the actual logic that needs to be executed
  */
 public class Receiver {
     /**
-     * List to store data entries.
+     * Variable of list to store data
      */
     private ArrayList<String> dataStorage = new ArrayList<>();
 
     /**
-     * Static variable to temporarily store a string for undoing an update.
+     * Variable of string for undoing an update
      */
-    static String strForUndoUpdate;
+    private String strForUndoUpdate;
 
     /**
-     * Constructs a new Receiver and loads existing data from the file if it exists.
+     * Constructs a new Receiver and loads existing data from the file if it exists
      */
     public Receiver() {
-        loadExistingData();
+        Path filepath = Paths.get("./src/dataStore.txt");
+        String line = "";
+
+        if (Files.notExists(filepath)) {
+            System.out.println("File does not exist");
+            return;
+        }
+
+        try (BufferedReader buff_read = Files.newBufferedReader(filepath)) {
+            while ( (line = buff_read.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    dataStorage.add(line.trim());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading file: " + e.getMessage());
+        }
     }
 
     /**
-     * Returns the number of data entries currently stored.
+     * To get the size of the data storage
      *
      * @return the size of the data storage
      */
@@ -39,39 +53,7 @@ public class Receiver {
     }
 
     /**
-     * Adds a new data entry to the storage.
-     *
-     * @param strData the data string to add
-     */
-    public void add(String strData) {
-        dataStorage.add(strData);
-    }
-
-    /**
-     * Updates an existing entry at a specific index with new data.
-     * Only updates fields that are provided in the update string.
-     * Also stores the original entry for undo purposes.
-     *
-     * @param intUpdateIndex the index to update
-     * @param strUpdateData  the new data to update
-     * @param printMessage   flag to optionally print messages (not used here)
-     */
-    public void update(int intUpdateIndex, String strUpdateData, boolean printMessage) {
-        String original = dataStorage.get(intUpdateIndex);
-        String[] arrOrigin = original.split("\\s+", 3);
-        String[] arrUpdate = strUpdateData.split("\\s+", 3);
-
-        for (int i = 0; i < arrUpdate.length; ++i) {
-            arrOrigin[i] = arrUpdate[i];
-        }
-
-        String updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2];
-        strForUndoUpdate = original;
-        dataStorage.set(intUpdateIndex, updatedInput);
-    }
-
-    /**
-     * Retrieves the data entry at a given index.
+     * Retrieves the data entry at a given index
      *
      * @param index the index of the entry
      * @return the data string at the specified index
@@ -81,7 +63,49 @@ public class Receiver {
     }
 
     /**
-     * Deletes the data entry at the given index.
+     * Inserts data into a specific index in the data storage
+     *
+     * @param index the index to insert the data at
+     * @param data  the data string to insert
+     */
+    public void insert(int index, String data) {
+
+        dataStorage.add(index, data);
+    }
+
+    /**
+     * Adds a new data to the storage
+     *
+     * @param strData the data string to add
+     */
+    public void add(String strData) {
+        dataStorage.add(strData);
+    }
+
+    /**
+     * Updates an existing entry at a specific index with new data
+     * Only updates fields that are provided in the string
+     * Also stores the original entry for undo purposes
+     *
+     * @param intUpdateIndex the index to update
+     * @param strUpdateData  the new data to update
+     */
+    public void update(int intUpdateIndex, String strUpdateData) {
+        String original = dataStorage.get(intUpdateIndex);
+        strForUndoUpdate = original; //for undo
+        String[] arrOrigin = original.split("\\s+");
+        String[] arrUpdate = strUpdateData.split("\\s+");
+
+        for (int i = 0; i < arrUpdate.length; ++i) {
+            arrOrigin[i] = arrUpdate[i];
+        }
+
+        String updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2];
+        dataStorage.set(intUpdateIndex, updatedInput);
+    }
+
+    /**
+     * Deletes the data
      *
      * @param intDeleteIndex the index to delete
      */
@@ -91,18 +115,8 @@ public class Receiver {
     }
 
     /**
-     * Inserts data into a specific index in the data storage.
-     *
-     * @param index the index to insert the data at
-     * @param data  the data string to insert
-     */
-    public void insert(int index, String data) {
-        dataStorage.add(index, data);
-    }
-
-    /**
-     * Lists all data entries in the storage, formatted with index numbers.
-     * If the storage is empty, a message is printed instead.
+     * Lists all data in the storage, formatted with index numbers
+     * If the storage is empty, a message is printed
      */
     public void list() {
         if (dataStorage.isEmpty()) {
@@ -118,55 +132,29 @@ public class Receiver {
     }
 
     /**
-     * Loads existing data from the file into the data storage.
-     * Skips empty lines.
-     */
-    public void loadExistingData() {
-        Path filepath = Paths.get("./src/dataStore.txt");
-        File file = new File(filepath.toUri());
-
-        if (!file.exists()) {
-            return; // Nothing to load
-        }
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.trim().isEmpty()) {
-                    dataStorage.add(line.trim());
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error loading file: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Saves all current data entries to the file `dataStore.txt`.
-     * If the file does not exist, it is created.
-     * The file is overwritten with the latest data.
+     * Saves all current data from storage to the file `dataStore.txt`.
+     * Create new file if the file does not exist
+     * The file is overwritten with the latest data
      */
     public void storeToFile() {
         Path filepath = Paths.get("./src/dataStore.txt");
-        File file = new File(filepath.toUri());
+        String line = "";
 
-        try {
-            // Create file if it doesn't exist
-            if (!file.exists()) {
-                file.createNewFile();
+        if (Files.notExists(filepath)) {
+            try {
+                createFile(filepath);
+            } catch (IOException e) {
+                System.out.println("Error creating file: " + e.getMessage());
             }
+        }
 
-            // Open in overwrite mode (truncate)
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, false));
-
+        try (BufferedWriter buff_writer = Files.newBufferedWriter(filepath)) {
             for (String strData : dataStorage) {
-                bufferedWriter.write(strData);
-                bufferedWriter.newLine();
+                buff_writer.write(strData);
+                buff_writer.newLine();
             }
-
-            bufferedWriter.close();
         } catch (IOException e) {
-            System.out.println("Error saving to file: " + e.getMessage());
+            System.out.println("Error write to file: " + e.getMessage());
         }
     }
 }

@@ -11,30 +11,30 @@ import java.util.regex.Pattern;
  */
 public class UpdateCommand implements Command {
     /**
-     * The receiver that performs the actual update.
+     * Variable of the receiver that performs the actual listing operation
      */
     private Receiver receiver;
 
     /**
-     * The command string used for update.
+     * Variable of the update command
      */
     private String strUpdateCommand;
 
     /**
-     * Stores the previous value for undo operation.
+     * Variable of string for undoing update
      */
     private String strForUndoUpdate = "";
 
     /**
-     * Flag to determine if the command should be saved in history.
+     * Variable of the flag to determine if the command should be saved in history
      */
     private boolean toHistory = true;
 
     /**
-     * Constructs an UpdateCommand object.
+     * Constructor for UpdateCommand
      *
-     * @param receiver the receiver that handles the update logic
-     * @param strUpdateCommand the string command input to execute update
+     * @param receiver the receiver that performs the command
+     * @param strUpdateCommand the command string to be executed
      */
     public UpdateCommand(Receiver receiver, String strUpdateCommand) {
         this.receiver = receiver;
@@ -42,11 +42,7 @@ public class UpdateCommand implements Command {
     }
 
     /**
-     * Executes the update command.
-     * <p>Validates the command format and data content. Converts all data fields (except index)
-     * to Capitalized form. Performs the update and stores the previous value for undo.</p>
-     *
-     * @throws CustomException if validation fails or receiver is null
+     * Executes the update command
      */
     @Override
     public void execute() {
@@ -113,8 +109,6 @@ public class UpdateCommand implements Command {
 
         this.strUpdateCommand = String.join(" ", splitUpdateCommand);
 
-
-
         // Get string after index for update
         int firstSpaceIndex = this.strUpdateCommand.indexOf(" ");
         String strUpdateData = "";
@@ -126,23 +120,21 @@ public class UpdateCommand implements Command {
         strForUndoUpdate = receiver.get(intUpdateIndex);
 
         // Perform update
-        receiver.update(intUpdateIndex, strUpdateData, true);
+        receiver.update(intUpdateIndex, strUpdateData);
         System.out.println("Update");
     }
 
     /**
-     * Undoes the update operation by restoring the original data at the updated index.
-     *
-     * @throws CustomException if undo fails
+     * Undoes the update command by restoring the original data at the updated index
      */
     @Override
     public void undo() {
         int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
-        receiver.update(intUpdateIndex, strForUndoUpdate, false);
+        receiver.update(intUpdateIndex, strForUndoUpdate);
     }
 
     /**
-     * Indicates whether this command should be saved in history.
+     * Indicates whether this command should be saved in history
      *
      * @return {@code true} if the command should be saved; {@code false} otherwise
      */

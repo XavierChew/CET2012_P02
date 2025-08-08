@@ -5,18 +5,16 @@ import Commands.Command;
 import java.util.Stack;
 
 /**
- * The {@code Invoker} class is responsible for executing a set of commands
- * and managing the command history stack. It is a key component of the
- * Command design pattern.
+ * The {@code Invoker} class knows how to execute a given command
  */
 public class Invoker {
     /**
-     * Array to store the list of commands to execute.
+     * Variable of an array to store the list of commands to execute.
      */
     private Command[] cmdToExecute;
 
     /**
-     * Sets the commands to be executed.
+     * Variable of commands to be executed.
      *
      * @param cmdToExecute an array of {@link Command} objects to execute
      */
@@ -25,12 +23,7 @@ public class Invoker {
     }
 
     /**
-     * Executes all commands in the {@code cmdToExecute} array.
-     * If a command throws a {@link CustomException}, the error is printed
-     * and execution continues with the next command.
-     * <p>
-     * Commands that indicate they should be stored in history (via
-     * {@code toBeSavedInHistory()}) are pushed onto the {@code history} stack.
+     * Executes all commands in the {@code cmdToExecute} array
      *
      * @param history the {@link Stack} used to store executed commands for undo operations
      */

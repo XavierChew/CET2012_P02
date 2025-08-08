@@ -6,33 +6,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * The {@code AddCommand} class represents a command to add a new entry
- * into the receiver's data storage. It validates the input, applies formatting rules
- * (e.g., title case and email checks), and throws exceptions if validation fails.
- *
- * <p>This class is part of a Command Pattern implementation.
+ * The {@code AddCommand} class add a new entry
  */
 public class AddCommand implements Command {
 
     /**
-     * The receiver that will execute the command logic.
+     * Variable of the receiver that performs the actual listing operation
      */
     private Receiver receiver;
 
     /**
-     * The add command string containing three fields separated by whitespace.
+     * Variable of the add command
      */
     private String strAddCommand;
 
     /**
-     * A flag indicating whether this command should be recorded in history.
+     * Variable of the flag indicating whether this command should be recorded in history.
      */
     private boolean toHistory = true;
 
     /**
-     * Constructs an {@code AddCommand} with the specified receiver and command string.
+     * Constructor for AddCommand
      *
-     * @param receiver       the receiver object that performs the command
+     * @param receiver the receiver that performs the command
      * @param strAddCommand  the command string to be executed
      */
     public AddCommand(Receiver receiver, String strAddCommand) {
@@ -41,12 +37,7 @@ public class AddCommand implements Command {
     }
 
     /**
-     * Executes the add command. Validates input, applies title casing to fields,
-     * checks email or Latin string format in the third field, and adds the formatted
-     * data to the receiver's storage.
-     *
-     * @throws CustomException if the receiver is null, the command format is invalid,
-     *                         or field validation fails
+     * Executes the add commands
      */
     @Override
     public void execute() {
@@ -104,7 +95,7 @@ public class AddCommand implements Command {
     }
 
     /**
-     * Undoes the add command by deleting the most recently added entry from the receiver's storage.
+     * Undoes the add command by deleting the most recently added entry from the data storage
      */
     @Override
     public void undo() {

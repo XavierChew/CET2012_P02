@@ -2,45 +2,41 @@ package Commands;
 
 import Exception.CustomException;
 import Tools.Receiver;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
- * The {@code DeleteCommand} class implements the {@link Command} interface
- * to provide functionality for deleting an item from the {@link Receiver}'s data storage.
- * It also supports undoing the delete operation by storing the deleted item and its index.
+ * The {@code DeleteCommand} class deleting an item data storage
  */
 public class DeleteCommand implements Command {
     /**
-     * The receiver that performs the actual delete operation.
+     * Variable of the receiver that performs the actual listing operation
      */
     private Receiver receiver;
 
     /**
-     * The string containing the delete command (index).
+     * Variable of the delete command
      */
     private String strDeleteCommand;
 
     /**
-     * The string that was deleted, used for undoing.
+     * Variable of string for undoing delete
      */
     private String deletedString = "";
 
     /**
-     * The index from which the string was deleted.
+     * Variable of the index from which the string was deleted
      */
     private int deletedIndex;
 
     /**
-     * A flag to determine whether this command should be added to history.
+     * Variable of the flag to determine whether this command should be added to history
      */
     private boolean toHistory = true;
 
     /**
-     * Constructs a {@code DeleteCommand} with the specified receiver and command string.
+     * Constructor for DeleteCommand
      *
-     * @param receiver          the {@link Receiver} instance
-     * @param strDeleteCommand  the command input representing the index to delete
+     * @param receiver the receiver that performs the command
+     * @param strDeleteCommand  the command string to be executed
      */
     public DeleteCommand(Receiver receiver, String strDeleteCommand) {
         this.receiver = receiver;
@@ -48,10 +44,7 @@ public class DeleteCommand implements Command {
     }
 
     /**
-     * Executes the delete command.
-     * Validates the input and deletes the item at the specified index.
-     *
-     * @throws CustomException if the receiver is null, command is invalid, or index is out of bounds
+     * Executes the delete command
      */
     public void execute() {
         if (this.receiver == null) {
@@ -103,9 +96,7 @@ public class DeleteCommand implements Command {
     }
 
     /**
-     * Undoes the delete operation by reinserting the deleted string at its original index.
-     *
-     * @throws CustomException if the deleted string is null
+     * Undoes the delete command by reinserting the deleted string at its original index
      */
     public void undo() {
         if (this.deletedString == null) {
@@ -116,7 +107,7 @@ public class DeleteCommand implements Command {
     }
 
     /**
-     * Indicates whether this command should be saved in the undo history.
+     * Indicates whether this command should be saved in the undo history
      *
      * @return {@code true} if the command should be saved in history; {@code false} otherwise
      */

@@ -5,24 +5,23 @@ import Tools.Receiver;
 import java.util.Stack;
 
 /**
- * UndoCommand class that implements the Command interface.
- * This command undoes the last command stored in the history stack.
+ * UndoCommand class undoes the last command stored in the history stack
  */
 public class UndoCommand implements Command {
     /**
-     * Stack to maintain the history of executed commands.
+     * Variable of command history stack of executed commands
      */
     private Stack<Command> history;
 
     /**
-     * The receiver that performs the actual operations.
+     * Variable of the receiver that performs the actual listing operation
      */
     private Receiver receiver;
 
     /**
-     * Constructor for UndoCommand.
+     * Constructor for UndoCommand
      *
-     * @param receiver the receiver object used to perform operations
+     * @param receiver the receiver used to perform command
      * @param history  the command history stack
      */
     public UndoCommand(Receiver receiver, Stack<Command> history) {
@@ -31,10 +30,7 @@ public class UndoCommand implements Command {
     }
 
     /**
-     * Executes the UndoCommand by popping the last command from history
-     * and calling its undo() method.
-     *
-     * @throws CustomException if the receiver is null or history is empty
+     * Executes the undo command
      */
     @Override
     public void execute() {
@@ -50,15 +46,13 @@ public class UndoCommand implements Command {
     }
 
     /**
-     * Undo method for UndoCommand.
-     * This method is intentionally left empty because UndoCommand itself does not need to be undone.
+     * Undo method for UndoCommand
      */
     @Override
     public void undo() {}
 
     /**
-     * Indicates whether this command should be saved in history.
-     * For UndoCommand, it always returns false.
+     * Indicates whether this command should be saved in history
      *
      * @return false since undo actions should not be stored in history
      */

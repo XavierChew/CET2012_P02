@@ -4,28 +4,25 @@ import Exception.CustomException;
 import Tools.Receiver;
 
 /**
- * ListCommand class that implements the Command interface.
- * This command is responsible for listing the current data stored by the receiver.
+ * ListCommand class listing the current data in storage
  */
 public class ListCommand implements Command {
     /**
-     * The receiver that performs the actual listing operation.
+     * Variable of the receiver that performs the actual listing operation
      */
     private Receiver receiver;
 
     /**
-     * Constructor for ListCommand.
+     * Constructor for ListCommand
      *
-     * @param receiver the receiver object used to perform operations
+     * @param receiver the receiver used to perform command
      */
     public ListCommand(Receiver receiver) {
         this.receiver = receiver;
     }
 
     /**
-     * Executes the ListCommand by calling the list() method on the receiver.
-     *
-     * @throws CustomException if the receiver is null
+     * Executes the list command
      */
     @Override
     public void execute() {
@@ -36,15 +33,13 @@ public class ListCommand implements Command {
     }
 
     /**
-     * Undo method for ListCommand.
-     * This method is intentionally left empty because listing does not change any state.
+     * Undo method for ListCommand
      */
     @Override
     public void undo() {}
 
     /**
      * Indicates whether this command should be saved in history.
-     * For ListCommand, it always returns false.
      *
      * @return false since list operations should not be stored in history
      */
