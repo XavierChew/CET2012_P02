@@ -13,7 +13,7 @@ public class Receiver {
     /**
      * Variable for dataStorage
      */
-    public ArrayList<String> dataStorage = new ArrayList<>();
+    private ArrayList<String> dataStorage = new ArrayList<>();
 
     /**
      * Variable for storing data for undo Update
@@ -26,6 +26,13 @@ public class Receiver {
      */
     public Receiver() {
         loadExistingData();
+    }
+
+    /**
+     * Get storage size
+     */
+    public int getStorageSize() {
+        return dataStorage.size();
     }
 
     /**
@@ -75,7 +82,7 @@ public class Receiver {
 
     public void list() {
         if (dataStorage.isEmpty()) {
-            System.out.println("Data store is empty");
+            System.out.println("Data storage is empty");
         }
         else {System.out.println("List");
             int index = 1;

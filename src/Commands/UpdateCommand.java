@@ -41,33 +41,14 @@ public class UpdateCommand implements Command {
      */
     @Override
     public void execute() {
-        if (this.strUpdateCommand == null) {
+        if (this.strUpdateCommand == null ||  this.strUpdateCommand.isEmpty()) {
             throw new CustomException("command cannot be null.");
         }
 //        try {
         String[] splitUpdateCommand = this.strUpdateCommand.split("\\s+");
 
         // check command format
-        if (splitUpdateCommand.length < 1) {
-            throw new CustomException("Invalid command");
-        }
-
-        // regex patterns
-        String strPatterns = "^([a-zA-Z0-9_]+|[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
-//            String data1 = "[a-zA-Z0-9_]+";
-//            String data2 = "[a-zA-Z0-9_]+";
-
-        // validate input based on length
-        if (splitUpdateCommand.length == 4) {
-            Pattern pattern = Pattern.compile(strPatterns);
-            Matcher matcher = pattern.matcher(splitUpdateCommand[3]);
-            if (!matcher.matches()) {
-                toHistory = false;
-                throw new CustomException("Invalid command");
-            }
-
-        }
-        else {
+        if (splitUpdateCommand.length < 1 || splitUpdateCommand.length > 4) {
             toHistory = false;
             throw new CustomException("Invalid command");
         }
@@ -90,6 +71,26 @@ public class UpdateCommand implements Command {
             toHistory = false;
             throw new CustomException("Invalid command");
         }
+
+        // regex patterns
+        String strPatterns = "^([a-zA-Z0-9_]+|[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
+//            String data1 = "[a-zA-Z0-9_]+";
+//            String data2 = "[a-zA-Z0-9_]+";
+
+        // validate input based on length
+        if (splitUpdateCommand.length == 4) {
+            Pattern pattern2 = Pattern.compile(strPatterns);
+            Matcher matcher2 = pattern2.matcher(splitUpdateCommand[3]);
+            if (!matcher2.matches()) {
+                toHistory = false;
+                throw new CustomException("Invalid command");
+            }
+
+        }
+
+
+
+
 //            else if (splitUpdateCommand.length == 3) {
 //                Pattern pattern1 = Pattern.compile(data1);
 //                Pattern pattern2 = Pattern.compile(data2);
@@ -113,6 +114,12 @@ public class UpdateCommand implements Command {
 //            }
 
         // perform update
+        for (int i = 1; i < splitUpdateCommand.length; i++) {
+            splitUpdateCommand[i] = splitUpdateCommand[i].substring(0,1).toUpperCase() + splitUpdateCommand[i].substring(1);
+        }
+
+        this.strUpdateCommand = String.join(" ", splitUpdateCommand);
+
         int intUpdateIndex = Integer.parseInt(splitUpdateCommand[0]) - 1;
 
         int firstSpaceIndex = this.strUpdateCommand.indexOf(" ");

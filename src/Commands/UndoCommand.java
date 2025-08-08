@@ -31,7 +31,8 @@ public class UndoCommand implements Command {
     @Override
     public void execute() {
         if (history.isEmpty()) {
-            throw new CustomException("Undo not available.");
+            System.out.println("Undo not available.");
+            //throw new CustomException("Undo not available.");
         }
         Command lastAction = history.pop();
         lastAction.undo();

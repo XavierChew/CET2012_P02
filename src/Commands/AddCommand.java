@@ -38,7 +38,7 @@ public class AddCommand implements Command {
     @Override
     public void execute(){
         //straddcmd check null
-        if (this.strAddCommand == null) {
+        if (this.strAddCommand == null || this.strAddCommand.isEmpty()) {
             throw new CustomException("command cannot be null.");
         }
 
@@ -82,7 +82,8 @@ public class AddCommand implements Command {
      */
     @Override
     public void undo(){
-        receiver.dataStorage.removeLast();
+        int index = receiver.getStorageSize();
+        receiver.delete(index - 1);
     }
 
     /**

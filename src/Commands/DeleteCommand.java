@@ -23,16 +23,17 @@ public class DeleteCommand implements Command {
     }
 
     public void execute() {
-        if (this.strDeleteCommand == null) {
+        if (this.strDeleteCommand == null || this.strDeleteCommand.isEmpty()) {
             throw new CustomException("command cannot be null.");
         }
 
         String[] splitDeleteCommand = this.strDeleteCommand.split("\\s+");
 
-        if (receiver.dataStorage.isEmpty()) {
+        if (receiver.getStorageSize() < 1) {
             toHistory = false;
             throw new CustomException("Nothing to delete.");
         }
+
         //check command format
         if (splitDeleteCommand.length != 1 ) {
             toHistory = false;
