@@ -91,6 +91,7 @@ public class UpdateCommand implements Command {
             }
 
         }
+
         // perform update
         for (int i = 1; i < splitUpdateCommand.length; i++) {
             splitUpdateCommand[i] = splitUpdateCommand[i].substring(0,1).toUpperCase() + splitUpdateCommand[i].substring(1).toLowerCase();

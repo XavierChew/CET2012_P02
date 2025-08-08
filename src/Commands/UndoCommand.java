@@ -34,7 +34,6 @@ public class UndoCommand implements Command {
         }
         if (history.isEmpty()) {
             System.out.println("Undo not available.");
-            //throw new CustomException("Undo not available.");
         }
         Command lastAction = history.pop();
         lastAction.undo();
