@@ -21,6 +21,11 @@ public class Receiver {
     private String strForUndoUpdate;
 
     /**
+     * Variable of indicator if it is from undo command
+     */
+    private boolean isUndo;
+
+    /**
      * Constructs a new Receiver and loads existing data from the file if it exists
      */
     public Receiver() {
@@ -60,6 +65,24 @@ public class Receiver {
      */
     public String get(int index) {
         return dataStorage.get(index);
+    }
+
+    /**
+     * To get if it is from UndoCommand
+     *
+     * @return {@code true} if the command is from undo and {@code false} otherwise
+     */
+    public boolean setUndo(boolean isUndo) {
+        return isUndo;
+    }
+
+    /**
+     * To get if it is from UndoCommand
+     *
+     * @return {@code true} if the command is from undo and {@code false} otherwise
+     */
+    public boolean getUndo() {
+        return this.isUndo;
     }
 
     /**
@@ -111,7 +134,6 @@ public class Receiver {
      */
     public void delete(int intDeleteIndex) {
         dataStorage.remove(intDeleteIndex);
-        System.out.println("Delete");
     }
 
     /**

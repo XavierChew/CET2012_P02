@@ -50,7 +50,7 @@ public class AddCommand implements Command {
         // check null or empty command
         if (this.strAddCommand == null || this.strAddCommand.isEmpty()) {
             toHistory = false;
-            throw new CustomException("Command cannot be null.");
+            throw new CustomException("Invalid command.");
         }
 
         String[] splitAddCommand = this.strAddCommand.split("\\s+");
@@ -91,7 +91,10 @@ public class AddCommand implements Command {
 
         this.strAddCommand = String.join(" ", splitAddCommand);
         this.receiver.add(this.strAddCommand);
-        System.out.println("Add");
+        if (receiver.getUndo() == true)
+            System.out.println("Undo");
+        else
+            System.out.println("Add");
     }
 
     /**
@@ -99,8 +102,15 @@ public class AddCommand implements Command {
      */
     @Override
     public void undo() {
-        int index = receiver.getStorageSize();
-        receiver.delete(index - 1);
+        try {
+            receiver.setUndo(true);
+            int index = receiver.getStorageSize();
+            receiver.delete(index - 1);
+        }
+        catch (Exception e) {
+            toHistory = false;
+            throw new CustomException("Invalid index.");
+        }
     }
 
     /**

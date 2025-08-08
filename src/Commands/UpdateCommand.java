@@ -46,6 +46,7 @@ public class UpdateCommand implements Command {
      */
     @Override
     public void execute() {
+        // Validation
         if (this.receiver == null) {
             toHistory = false;
             throw new CustomException("Receiver cannot be null.");
@@ -53,34 +54,34 @@ public class UpdateCommand implements Command {
 
         if (this.strUpdateCommand == null ||  this.strUpdateCommand.isEmpty()) {
             toHistory = false;
-            throw new CustomException("command cannot be null.");
-        }
-        if (receiver.getStorageSize()<=0){
-            toHistory = false;
-            throw new CustomException("Storage size is zero, can't update command.");
+            throw new CustomException("Invalid command.");
         }
 
         String[] splitUpdateCommand = this.strUpdateCommand.split("\\s+");
 
-        if (splitUpdateCommand.length < 2 || splitUpdateCommand.length > 4) {
-            toHistory = false;
-            throw new CustomException("Invalid command");
-        }
-
-        // Validate index
         int intUpdateIndex = -1;
 
         try {
             intUpdateIndex = Integer.parseInt(splitUpdateCommand[0]) - 1;
         }
         catch (Exception e) {
-            throw new CustomException("Invalid index to update");
+            toHistory = false;
+            throw new CustomException("Invalid index.");
         }
+
         if(intUpdateIndex < 0) {
+            toHistory = false;
             throw new CustomException("Index cannot be less than 0");
         }
+
         if(intUpdateIndex >= receiver.getStorageSize()) {
+            toHistory = false;
             throw new CustomException("Index position exceed data size");
+        }
+
+        if (splitUpdateCommand.length < 2 || splitUpdateCommand.length > 4) {
+            toHistory = false;
+            throw new CustomException("Invalid command");
         }
 
         // Define regex for validation
@@ -121,7 +122,10 @@ public class UpdateCommand implements Command {
 
         // Perform update
         receiver.update(intUpdateIndex, strUpdateData);
-        System.out.println("Update");
+        if (receiver.getUndo() == true)
+            System.out.println("Undo");
+        else
+            System.out.println("Update");
     }
 
     /**
@@ -129,8 +133,15 @@ public class UpdateCommand implements Command {
      */
     @Override
     public void undo() {
-        int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
-        receiver.update(intUpdateIndex, strForUndoUpdate);
+        try {
+            receiver.setUndo(true);
+            int intUpdateIndex = (Integer.parseInt(this.strUpdateCommand.split(" ")[0])) - 1;
+            receiver.update(intUpdateIndex, strForUndoUpdate);
+        }
+        catch (Exception e) {
+            toHistory = false;
+            throw new CustomException("Invalid index.");
+        }
     }
 
     /**

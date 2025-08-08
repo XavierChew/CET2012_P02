@@ -25,7 +25,7 @@ public class DeleteCommand implements Command {
     /**
      * Variable of the index from which the string was deleted
      */
-    private int deletedIndex;
+    private int deletedIndex = 0;
 
     /**
      * Variable of the flag to determine whether this command should be added to history
@@ -47,6 +47,7 @@ public class DeleteCommand implements Command {
      * Executes the delete command
      */
     public void execute() {
+        //validation
         if (this.receiver == null) {
             toHistory = false;
             throw new CustomException("Receiver cannot be null.");
@@ -54,15 +55,10 @@ public class DeleteCommand implements Command {
 
         if (this.strDeleteCommand == null || this.strDeleteCommand.isEmpty()) {
             toHistory = false;
-            throw new CustomException("command cannot be null.");
+            throw new CustomException("Invalid command.");
         }
 
         String[] splitDeleteCommand = this.strDeleteCommand.split("\\s+");
-
-        if (receiver.getStorageSize() < 1) {
-            toHistory = false;
-            throw new CustomException("Nothing to delete.");
-        }
 
         // Check that the command contains only one argument
         if (splitDeleteCommand.length != 1) {
@@ -70,29 +66,33 @@ public class DeleteCommand implements Command {
             throw new CustomException("Invalid command");
         }
 
-        // Validate the index format
-        int deletedIndex = -1;
-
+        int intDeleteIndex = -1;
         try {
-            deletedIndex = Integer.parseInt(splitDeleteCommand[0]) - 1;
+            intDeleteIndex = Integer.parseInt(splitDeleteCommand[0]) - 1;
         }
         catch (Exception e) {
-            throw new CustomException("Invalid index to delete");
+            toHistory = false;
+            throw new CustomException("Invalid index.");
         }
-        if(deletedIndex < 0) {
+
+        if(intDeleteIndex < 0) {
+            toHistory = false;
             throw new CustomException("Index cannot be less than 0");
         }
-        if(deletedIndex >= receiver.getStorageSize()) {
+
+        if(intDeleteIndex >= receiver.getStorageSize()) {
+            toHistory = false;
             throw new CustomException("Index position exceed data size");
         }
 
+        this.deletedIndex = intDeleteIndex;
+        this.deletedString = this.receiver.get(intDeleteIndex);
+        this.receiver.delete(intDeleteIndex);
 
-        if (this.deletedIndex >= receiver.getStorageSize()) {
-            throw new CustomException("Index out of bounds.");
-        }
-
-        this.deletedString = this.receiver.get(this.deletedIndex);
-        this.receiver.delete(this.deletedIndex);
+        if (receiver.getUndo() == true)
+            System.out.println("Undo");
+        else
+            System.out.println("Delete");
     }
 
     /**
@@ -103,6 +103,7 @@ public class DeleteCommand implements Command {
             toHistory = false;
             throw new CustomException("Error while performing undo.");
         }
+        receiver.setUndo(true);
         this.receiver.insert(this.deletedIndex, this.deletedString);
     }
 
