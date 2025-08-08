@@ -23,7 +23,14 @@ public class DeleteCommand implements Command {
     }
 
     public void execute() {
+
+        if (this.receiver == null) {
+            toHistory = false;
+            throw new CustomException("Receiver cannot be null.");
+        }
+
         if (this.strDeleteCommand == null || this.strDeleteCommand.isEmpty()) {
+            toHistory = false;
             throw new CustomException("command cannot be null.");
         }
 
@@ -41,7 +48,7 @@ public class DeleteCommand implements Command {
         }
 
         //check index
-        String strIndexPattern = "\"^[1-9]\\\\d*$\"";
+        String strIndexPattern = "^[1-9]\\d*$";
 
         boolean found = false;
 

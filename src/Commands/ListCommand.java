@@ -26,6 +26,9 @@ public class ListCommand implements Command {
      */
     @Override
     public void execute(){
+        if (this.receiver == null) {
+            throw new CustomException("Receiver cannot be null.");
+        }
         receiver.list();
     }
 

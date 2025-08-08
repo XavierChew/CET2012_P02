@@ -41,7 +41,13 @@ public class UpdateCommand implements Command {
      */
     @Override
     public void execute() {
+
+        if (this.receiver == null) {
+            toHistory = false;
+            throw new CustomException("Receiver cannot be null.");
+        }
         if (this.strUpdateCommand == null ||  this.strUpdateCommand.isEmpty()) {
+            toHistory = false;
             throw new CustomException("command cannot be null.");
         }
 //        try {
@@ -115,7 +121,7 @@ public class UpdateCommand implements Command {
 
         // perform update
         for (int i = 1; i < splitUpdateCommand.length; i++) {
-            splitUpdateCommand[i] = splitUpdateCommand[i].substring(0,1).toUpperCase() + splitUpdateCommand[i].substring(1);
+            splitUpdateCommand[i] = splitUpdateCommand[i].substring(0,1).toUpperCase() + splitUpdateCommand[i].substring(1).toLowerCase();
         }
 
         this.strUpdateCommand = String.join(" ", splitUpdateCommand);

@@ -21,7 +21,6 @@ public class UndoCommand implements Command {
      */
     public UndoCommand(Receiver receiver, Stack<Command> history) {
         this.receiver = receiver;
-        //this.strUndoCommand = strUndoCommand;
         this.history = history;
     }
 
@@ -30,6 +29,9 @@ public class UndoCommand implements Command {
      */
     @Override
     public void execute() {
+        if (this.receiver == null) {
+            throw new CustomException("Receiver cannot be null.");
+        }
         if (history.isEmpty()) {
             System.out.println("Undo not available.");
             //throw new CustomException("Undo not available.");

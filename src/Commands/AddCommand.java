@@ -18,7 +18,7 @@ public class AddCommand implements Command {
      */
     private String strAddCommand;
     /**
-     * Variable to decide if need to store in history
+     * Variable to decide if addCommand need to be stored in history
      */
     private boolean toHistory = true;
 
@@ -37,8 +37,16 @@ public class AddCommand implements Command {
      */
     @Override
     public void execute(){
-        //straddcmd check null
+
+        //check null receiver
+        if (this.receiver == null) {
+            toHistory = false;
+            throw new CustomException("Receiver cannot be null.");
+        }
+
+        //check null
         if (this.strAddCommand == null || this.strAddCommand.isEmpty()) {
+            toHistory = false;
             throw new CustomException("command cannot be null.");
         }
 
@@ -50,27 +58,29 @@ public class AddCommand implements Command {
             throw new CustomException("Invalid command");
         }
 
-        //check valid email
-        String strPattern = "^([a-zA-Z0-9_]+|[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
-        boolean found = false;
+        //Patterns
+        String emailPattern = "^([a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
+        String latinPattern = "^[a-zA-Z0-9_]+$";
 
-        // creating the Pattern & Matcher object
-        Pattern pattern = Pattern.compile(strPattern);
-        Matcher matcher = pattern.matcher(splitAddCommand[2]);
+        //Field 3 Validation
+        String field3 = splitAddCommand[2];
+        boolean isValidEmail = Pattern.matches(emailPattern, field3);
+        boolean isValidLatin = Pattern.matches(latinPattern, field3);
 
-        // the search
-        while (matcher.find()) {
-            found = true;
+        if (!isValidEmail && !isValidLatin) {
+            toHistory = false;
+            throw new CustomException("Invalid format for third field. Must be a valid email or Latin string.");
         }
 
-        // invalid email if not found
-        if (!found){
-            throw new CustomException("Invalid command.");
+        // Title case for field 3 only if it's a Latin string (not an email)
+        if (isValidLatin && !isValidEmail) {
+            splitAddCommand[2] = splitAddCommand[2].substring(0,1).toUpperCase() + splitAddCommand[2].substring(1).toLowerCase();
         }
 
-        // to upper for the 1st char
-        splitAddCommand[0] = splitAddCommand[0].substring(0,1).toUpperCase() + splitAddCommand[0].substring(1);
-        splitAddCommand[1] = splitAddCommand[1].substring(0,1).toUpperCase() + splitAddCommand[1].substring(1);
+        // Title case for field 1 & 2
+        splitAddCommand[0] = splitAddCommand[0].substring(0,1).toUpperCase() + splitAddCommand[0].substring(1).toLowerCase();
+        splitAddCommand[1] = splitAddCommand[1].substring(0,1).toUpperCase() + splitAddCommand[1].substring(1).toLowerCase();
+
 
         this.strAddCommand = String.join(" ", splitAddCommand);
         this.receiver.add(this.strAddCommand);

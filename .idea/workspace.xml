@@ -8,10 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/AddCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/DeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/DeleteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Commands/ListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/ListCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/UndoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/UndoCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Commands/UpdateCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Commands/UpdateCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tools/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/Receiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataStore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStore.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,16 +320,5 @@
     <MESSAGE value="change the main so it can always generate new object, fix exception, add javadoc" />
     <MESSAGE value="add null checking" />
     <option name="LAST_COMMIT_MESSAGE" value="add null checking" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Commands/UpdateCommand.java</url>
-          <line>116</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
