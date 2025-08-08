@@ -15,7 +15,7 @@ public class DeleteCommand implements Command {
     private String strDeleteCommand;
     private String deletedString = "";
     private int deletedIndex;
-    private boolean hasError = false;
+    private boolean toHistory = true;
 
     public DeleteCommand(Receiver receiver, String strDeleteCommand) {
         this.receiver = receiver;
@@ -23,59 +23,53 @@ public class DeleteCommand implements Command {
     }
 
     public void execute() {
-        try {
-            String[] splitDeleteCommand = this.strDeleteCommand.split("\\s+");
 
-            if (Receiver.dataStorage.isEmpty()) {
-                throw new CustomException("Unable to delete, Data Storage is empty.");
-            }
-            //check command format
-            if (splitDeleteCommand.length != 1 ) {
-                throw new CustomException("Invalid command");
-            }
+        String[] splitDeleteCommand = this.strDeleteCommand.split("\\s+");
 
-            //check index
-            String strIndexPattern = "[0-9]";
-
-            boolean found = false;
-
-            // creating the Pattern & Matcher object
-            Pattern pattern = Pattern.compile(strIndexPattern);
-            Matcher matcher = pattern.matcher(this.strDeleteCommand);
-
-            // the search
-            while (matcher.find()) {
-                found = true;
-            }
-
-            if (!found){
-                throw new CustomException("Invalid index");
-            }
-
-            this.deletedIndex = Integer.parseInt(this.strDeleteCommand) - 1;
-            this.deletedString = this.receiver.get(this.deletedIndex);
-            this.receiver.delete(this.deletedIndex);
-        } catch (CustomException e) {
-            System.out.println("Error: " + e.getMessage());
-            hasError = true;
-            //System.out.println("Error in DeleteCommand execute(): " + e.getMessage());
+        if (receiver.dataStorage.isEmpty()) {
+            toHistory = false;
+            throw new CustomException("Nothing to delete.");
+        }
+        //check command format
+        if (splitDeleteCommand.length != 1 ) {
+            toHistory = false;
+            throw new CustomException("Invalid command");
         }
 
+        //check index
+        String strIndexPattern = "\"^[1-9]\\\\d*$\"";
+
+        boolean found = false;
+
+        // creating the Pattern & Matcher object
+        Pattern pattern = Pattern.compile(strIndexPattern);
+        Matcher matcher = pattern.matcher(this.strDeleteCommand);
+
+        // the search
+        while (matcher.find()) {
+            found = true;
+        }
+
+        if (!found){
+            toHistory = false;
+            throw new CustomException("Invalid command");
+        }
+
+        this.deletedIndex = Integer.parseInt(this.strDeleteCommand) - 1;
+        this.deletedString = this.receiver.get(this.deletedIndex);
+        this.receiver.delete(this.deletedIndex);
     }
 
+
     public void undo() {
-        try {
-            if (this.deletedString == null) {
-                throw new CustomException("Error while performing undo.");
-            }
-            this.receiver.insert(this.deletedIndex, this.deletedString);
-        } catch (CustomException e) {
-            System.out.println("Error: " + e.getMessage());
-            hasError = true;
+        if (this.deletedString == null) {
+            toHistory = false;
+            throw new CustomException("Error while performing undo.");
         }
+        this.receiver.insert(this.deletedIndex, this.deletedString);
     }
 
     public boolean toBeSavedInHistory() {
-        return !hasError;
+        return toHistory;
     }
 }

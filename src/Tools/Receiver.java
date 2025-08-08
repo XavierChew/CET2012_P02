@@ -10,21 +10,23 @@ import java.util.ArrayList;
  * Receiver class:
  */
 public class Receiver {
-
-    public Receiver() {
-        loadExistingFile();
-    }
-
     /**
      * Variable for dataStorage
      */
-    public static ArrayList<String> dataStorage = new ArrayList<>();
-    static String strForUndoDelete;
+    public ArrayList<String> dataStorage = new ArrayList<>();
+
+    /**
+     * Variable for storing data for undo Update
+     */
     static String strForUndoUpdate;
-    /**
-     * Variable for dataStorage
-     */
+    //static String strForUndoDelete;
 
+    /**
+     * Receiver constructor
+     */
+    public Receiver() {
+        loadExistingData();
+    }
 
     /**
      * Add function for Add Command
@@ -33,8 +35,6 @@ public class Receiver {
      */
     public void add(String strData) {
         dataStorage.add(strData);
-        //System.out.println("Add");
-        //System.out.println("Add " + strData); //for testing
     }
 
     /**
@@ -56,8 +56,7 @@ public class Receiver {
         String updatedInput = arrOrigin[0] + " " + arrOrigin[1] + " " + arrOrigin[2];
         strForUndoUpdate = original;
         dataStorage.set(intUpdateIndex, updatedInput);
-
-        }
+    }
 
 
     public String get(int index) {
@@ -65,6 +64,7 @@ public class Receiver {
     }
 
     public void delete(int intDeleteIndex) {
+        //storage size
         dataStorage.remove(intDeleteIndex);
         System.out.println("Delete");
     }
@@ -77,18 +77,18 @@ public class Receiver {
         if (dataStorage.isEmpty()) {
             System.out.println("Data store is empty");
         }
-        else {System.out.println("list");
-        int index = 1;
+        else {System.out.println("List");
+            int index = 1;
 
-        for(String data : dataStorage) {
-            String index_Print = String.format("%02d.", index++) + " " + data;
-            System.out.println(index_Print);
-        }
+            for(String data : dataStorage) {
+                String index_Print = String.format("%02d.", index++) + " " + data;
+                System.out.println(index_Print);
+            }
         }
 
     }
 
-    public void loadExistingFile() {
+    public void loadExistingData() {
         Path filepath = Paths.get("./src/dataStore.txt");
         File file = new File(filepath.toUri());
 
@@ -135,9 +135,4 @@ public class Receiver {
             System.out.println("Error saving to file: " + e.getMessage());
         }
     }
-
 }
-
-
-
-

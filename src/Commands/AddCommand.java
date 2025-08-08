@@ -17,7 +17,10 @@ public class AddCommand implements Command {
      * Variable for add command
      */
     private String strAddCommand;
-    private boolean hasError = false;
+    /**
+     * Variable to decide if need to store in history
+     */
+    private boolean toHistory = true;
 
     /**
      * Constructor of Update Command
@@ -33,62 +36,58 @@ public class AddCommand implements Command {
      * Execute method
      */
     @Override
-    public void execute() {
-        try {
-            String[] splitAddCommand = this.strAddCommand.split("\\s+");
+    public void execute(){
+        //straddcmd check null
 
-            //check command format
-            if (splitAddCommand.length != 3) {
-                throw new CustomException("Invalid command");
-            }
+        String[] splitAddCommand = this.strAddCommand.split("\\s+");
 
-            //check valid email
-            String strEmailPattern;
-
-//check command format
-
-            for (int i = 0; i < splitAddCommand.length; i++) {
-                if (i == 0 || i == 1) {
-                    strEmailPattern = "^[a-zA-Z0-9_]+$";
-                }
-                else {
-                    strEmailPattern = "^([a-zA-Z0-9_]+|[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
-                }
-
-                boolean found = false;
-
-                // creating the Pattern & Matcher object
-                Pattern pattern = Pattern.compile(strEmailPattern);
-                Matcher matcher = pattern.matcher(splitAddCommand[i]);
-
-                // the search
-                while (matcher.find()) {
-                    found = true;
-                }
-
-                if (!found && i != 2)
-                    throw new CustomException("Invalid command/email");
-
-            }
-            splitAddCommand[0] = splitAddCommand[0].substring(0,1).toUpperCase() + splitAddCommand[0].substring(1);
-            splitAddCommand[1] = splitAddCommand[1].substring(0,1).toUpperCase() + splitAddCommand[1].substring(1);
-
-            this.strAddCommand = String.join(" ", splitAddCommand);
-            this.receiver.add(this.strAddCommand);
-            System.out.println("Add");
-        } catch (CustomException e) {
-            System.out.println("Error: " + e.getMessage());
-            hasError = true;
+        //check command format
+        if (splitAddCommand.length != 3) {
+            toHistory = false;
+            throw new CustomException("Invalid command");
         }
+
+        //check valid email
+        String strPattern = "^([a-zA-Z0-9_]+|[a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
+        boolean found = false;
+
+        // creating the Pattern & Matcher object
+        Pattern pattern = Pattern.compile(strPattern);
+        Matcher matcher = pattern.matcher(splitAddCommand[2]);
+
+        // the search
+        while (matcher.find()) {
+            found = true;
+        }
+
+        // invalid email if not found
+        if (!found){
+            throw new CustomException("Invalid command.");
+        }
+
+        // to upper for the 1st char
+        splitAddCommand[0] = splitAddCommand[0].substring(0,1).toUpperCase() + splitAddCommand[0].substring(1);
+        splitAddCommand[1] = splitAddCommand[1].substring(0,1).toUpperCase() + splitAddCommand[1].substring(1);
+
+        this.strAddCommand = String.join(" ", splitAddCommand);
+        this.receiver.add(this.strAddCommand);
+        System.out.println("Add");
     }
 
+    /**
+     * Undo method
+     */
     @Override
     public void undo(){
-        Receiver.dataStorage.removeLast();
+        receiver.dataStorage.removeLast();
     }
 
+    /**
+     * A method to decide if this command need to save in history
+     * @return toHistory
+     */
     @Override
     public boolean toBeSavedInHistory() {
-        return !hasError;
+        return toHistory;
     }
 }

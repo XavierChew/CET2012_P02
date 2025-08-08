@@ -1,5 +1,6 @@
 package Tools;
 
+import Exception.CustomException;
 import Commands.Command;
 import java.util.Stack;
 
@@ -29,9 +30,15 @@ public class Invoker {
      */
     public void executeCommand(Stack<Command> history) {
         for (Command cmd : this.cmdToExecute) {
-            cmd.execute();
-            if (cmd.toBeSavedInHistory()) {
-                history.push(cmd);
+            try {
+                cmd.execute();
+                if (cmd.toBeSavedInHistory()) {
+                    history.push(cmd);
+                }
+            }
+            catch (CustomException e)
+            {
+                System.out.println("Error: " + e.getMessage());
             }
         }
     }

@@ -11,10 +11,7 @@ public class ListCommand implements Command {
      * Variable for receiver
      */
     private Receiver receiver;
-    /**
-     * Variable for list command
-     */
-    //private String strListCommand;
+
 
     /**
      * Constructor of Delete Command
@@ -22,7 +19,6 @@ public class ListCommand implements Command {
      */
     public ListCommand(Receiver receiver) {
         this.receiver = receiver;
-        //this.strListCommand = strListCommand;
     }
 
     /**
@@ -32,12 +28,20 @@ public class ListCommand implements Command {
     public void execute(){
         receiver.list();
     }
+
+    /**
+     * Undo method
+     */
     @Override
     public void undo(){}
 
+    /**
+     * A method to decide if this command need to save in history
+     * For List, we do not need to save in history
+     * @return false
+     */
     @Override
     public boolean toBeSavedInHistory() {
         return false;
     }
-
 }
