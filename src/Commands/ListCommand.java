@@ -4,28 +4,31 @@ import Exception.CustomException;
 import Tools.Receiver;
 
 /**
- * List Command class
+ * ListCommand class that implements the Command interface.
+ * This command is responsible for listing the current data stored by the receiver.
  */
 public class ListCommand implements Command {
     /**
-     * Variable for receiver
+     * The receiver that performs the actual listing operation.
      */
     private Receiver receiver;
 
-
     /**
-     * Constructor of Delete Command
-     * @param receiver the receiver
+     * Constructor for ListCommand.
+     *
+     * @param receiver the receiver object used to perform operations
      */
     public ListCommand(Receiver receiver) {
         this.receiver = receiver;
     }
 
     /**
-     * Execute method
+     * Executes the ListCommand by calling the list() method on the receiver.
+     *
+     * @throws CustomException if the receiver is null
      */
     @Override
-    public void execute(){
+    public void execute() {
         if (this.receiver == null) {
             throw new CustomException("Receiver cannot be null.");
         }
@@ -33,15 +36,17 @@ public class ListCommand implements Command {
     }
 
     /**
-     * Undo method
+     * Undo method for ListCommand.
+     * This method is intentionally left empty because listing does not change any state.
      */
     @Override
-    public void undo(){}
+    public void undo() {}
 
     /**
-     * A method to decide if this command need to save in history
-     * For List, we do not need to save in history
-     * @return false
+     * Indicates whether this command should be saved in history.
+     * For ListCommand, it always returns false.
+     *
+     * @return false since list operations should not be stored in history
      */
     @Override
     public boolean toBeSavedInHistory() {

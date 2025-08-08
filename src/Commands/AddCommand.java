@@ -6,26 +6,34 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Add Command class
+ * The {@code AddCommand} class represents a command to add a new entry
+ * into the receiver's data storage. It validates the input, applies formatting rules
+ * (e.g., title case and email checks), and throws exceptions if validation fails.
+ *
+ * <p>This class is part of a Command Pattern implementation.
  */
 public class AddCommand implements Command {
+
     /**
-     * Variable for receiver
+     * The receiver that will execute the command logic.
      */
     private Receiver receiver;
+
     /**
-     * Variable for add command
+     * The add command string containing three fields separated by whitespace.
      */
     private String strAddCommand;
+
     /**
-     * Variable to decide if addCommand need to be stored in history
+     * A flag indicating whether this command should be recorded in history.
      */
     private boolean toHistory = true;
 
     /**
-     * Constructor of Update Command
-     * @param receiver the receiver
-     * @param strAddCommand the add command
+     * Constructs an {@code AddCommand} with the specified receiver and command string.
+     *
+     * @param receiver       the receiver object that performs the command
+     * @param strAddCommand  the command string to be executed
      */
     public AddCommand(Receiver receiver, String strAddCommand) {
         this.receiver = receiver;
@@ -33,38 +41,44 @@ public class AddCommand implements Command {
     }
 
     /**
-     * Execute method
+     * Executes the add command. Validates input, applies title casing to fields,
+     * checks email or Latin string format in the third field, and adds the formatted
+     * data to the receiver's storage.
+     *
+     * @throws CustomException if the receiver is null, the command format is invalid,
+     *                         or field validation fails
      */
     @Override
-    public void execute(){
-
-        //check null receiver
+    public void execute() {
+        // check null receiver
         if (this.receiver == null) {
             toHistory = false;
             throw new CustomException("Receiver cannot be null.");
         }
 
-        //check null
+        // check null or empty command
         if (this.strAddCommand == null || this.strAddCommand.isEmpty()) {
             toHistory = false;
-            throw new CustomException("command cannot be null.");
+            throw new CustomException("Command cannot be null.");
         }
 
         String[] splitAddCommand = this.strAddCommand.split("\\s+");
 
-        //check command format
+        // check command format
         if (splitAddCommand.length != 3) {
             toHistory = false;
             throw new CustomException("Invalid command");
         }
 
-        //Patterns
-        String emailPattern = "^([a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3})$";
+        // Regex patterns
+        String localEmailPattern = "(?!.*[.-]{2})(?!.*[_.-][.-])(?!.*[.-][_.-])[a-zA-Z0-9](?:[a-zA-Z0-9_]|(?<![._-])[.-](?![._-]))*[a-zA-Z0-9]";
+        String domainEmailPattern = "(?!.*[.-]{2})(?!.*[.-][.-])[a-zA-Z0-9](?:[a-zA-Z0-9]|(?<![.-])[.-](?![.-]))*[a-zA-Z0-9]\\.[a-z]{2,3}";
+        String fullEmailPattern = "^" + localEmailPattern + "@" + domainEmailPattern + "$";
         String latinPattern = "^[a-zA-Z0-9_]+$";
 
-        //Field 3 Validation
+        // Field 3 validation
         String field3 = splitAddCommand[2];
-        boolean isValidEmail = Pattern.matches(emailPattern, field3);
+        boolean isValidEmail = Pattern.matches(fullEmailPattern, field3);
         boolean isValidLatin = Pattern.matches(latinPattern, field3);
 
         if (!isValidEmail && !isValidLatin) {
@@ -72,15 +86,17 @@ public class AddCommand implements Command {
             throw new CustomException("Invalid format for third field. Must be a valid email or Latin string.");
         }
 
-        // Title case for field 3 only if it's a Latin string (not an email)
+        // Title case field 3 only if it's a Latin string
         if (isValidLatin && !isValidEmail) {
-            splitAddCommand[2] = splitAddCommand[2].substring(0,1).toUpperCase() + splitAddCommand[2].substring(1).toLowerCase();
+            splitAddCommand[2] = splitAddCommand[2].substring(0, 1).toUpperCase()
+                    + splitAddCommand[2].substring(1).toLowerCase();
         }
 
-        // Title case for field 1 & 2
-        splitAddCommand[0] = splitAddCommand[0].substring(0,1).toUpperCase() + splitAddCommand[0].substring(1).toLowerCase();
-        splitAddCommand[1] = splitAddCommand[1].substring(0,1).toUpperCase() + splitAddCommand[1].substring(1).toLowerCase();
-
+        // Title case for fields 1 and 2
+        splitAddCommand[0] = splitAddCommand[0].substring(0, 1).toUpperCase()
+                + splitAddCommand[0].substring(1).toLowerCase();
+        splitAddCommand[1] = splitAddCommand[1].substring(0, 1).toUpperCase()
+                + splitAddCommand[1].substring(1).toLowerCase();
 
         this.strAddCommand = String.join(" ", splitAddCommand);
         this.receiver.add(this.strAddCommand);
@@ -88,17 +104,18 @@ public class AddCommand implements Command {
     }
 
     /**
-     * Undo method
+     * Undoes the add command by deleting the most recently added entry from the receiver's storage.
      */
     @Override
-    public void undo(){
+    public void undo() {
         int index = receiver.getStorageSize();
         receiver.delete(index - 1);
     }
 
     /**
-     * A method to decide if this command need to save in history
-     * @return toHistory
+     * Returns whether this command should be saved in the history stack.
+     *
+     * @return {@code true} if the command is valid and should be saved; {@code false} otherwise
      */
     @Override
     public boolean toBeSavedInHistory() {
